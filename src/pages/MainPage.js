@@ -1,10 +1,9 @@
 import React from 'react';
+import MainContainer from '../container/MainContainer';
 
 const MainPage = () => {
     return (
-        <div>
-            ㅁㅔ인
-        </div>
+        <MainContainer/>
     );
 };
 
