@@ -17,7 +17,7 @@ function loadInfo(){
   try{
     const info = getCookie("info");
     if(info){
-      store.dispatch(setInfo(info));
+      store.dispatch(setInfo(JSON.parse(info)));
     }else{
       const basicInfo = {
         background:"linear-gradient(#2193b0, #6dd5ed)",
