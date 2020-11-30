@@ -20,8 +20,8 @@ function loadInfo(){
       store.dispatch(setInfo(JSON.parse(info)));
     }else{
       const basicInfo = {
-        background:"linear-gradient(#2193b0, #6dd5ed)",
-        link:[],
+        background:"linear-gradient(to right, #2193b0, #6dd5ed)",
+        menu:[],
       };
       setCookie("info",JSON.stringify(basicInfo));
       store.dispatch(setInfo(basicInfo));
