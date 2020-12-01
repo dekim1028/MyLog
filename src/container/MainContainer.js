@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import Main from '../component/Main';
 import { useSelector } from 'react-redux';
 
 const MainContainer = () => {
-    const [menuVisible,setMenuVisible] = useState(false);
+    const [settingPopupVisible,setSettingPopupVisible] = useState(false);
     const {info} = useSelector(({info})=>({
         info:info.info,
     }));
 
-    const onClick = () =>{
-        setMenuVisible(!menuVisible);
+    const onShowSettingPopup = e =>{
+        e.stopPropagation();
+        setSettingPopupVisible(!settingPopupVisible);
     };
 
     return (
         <Main
-            info={info}
-            menuVisible={menuVisible}
-            onClick={onClick}    
+            info={info} 
+            settingPopupVisible={settingPopupVisible}
+            onShowSettingPopup={onShowSettingPopup}
         />
     );
 };
