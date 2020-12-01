@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {FaSearch} from 'react-icons/fa';
 import {AiTwotoneSetting} from 'react-icons/ai';
+import SearchInputContainer from '../container/SearchInputContainer';
 
 const MainBlock = styled.div`
     height: 100vh;
@@ -15,36 +15,6 @@ const Wrap = styled.div`
     @media (max-width:768px){
         width:80%;
     }
-`;
-
-const SearchBlock = styled.div`
-    width:500px;
-    height: 3em;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 0 10px;
-    background:white;
-    border-radius: 20px;
-    overflow:hidden;
-    @media (max-width:768px){
-        width:100%;
-    }
-`;
-
-const SearchInput = styled.input`
-    width: 90%;
-    height: 100%;
-    padding: 0 4px;
-    color: #424242;
-    font-size: 15px;
-    border: none;
-    outline: none;
-`;
-
-const SearchBtn = styled(FaSearch)`
-    color: gray;
-    font-size: 20px;
 `;
 
 const SettingBlock = styled.div`
@@ -154,10 +124,7 @@ const Main = ({info,menuVisible,onClick}) => {
     return (
         <MainBlock style={{background:info.background}}>
             <Wrap>
-                <SearchBlock>
-                    <SearchInput type="text"/>
-                    <SearchBtn/>
-                </SearchBlock>
+                <SearchInputContainer/>
                 <SettingBlock>
                     <MenuBlock style={{background:menuVisible?"rgb(255,255,255,0.2)":"rgb(255,255,255,0)"}}>
                         <MenuList style={{opacity:menuVisible?1:0}}>
