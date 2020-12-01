@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SearchInput from '../component/SearchInput';
-import { withRouter } from 'react-router-dom';
 
 const SearchInputContainer = () => {
     const [searchText,setSearchText] = useState('');
@@ -13,7 +12,7 @@ const SearchInputContainer = () => {
     const onSubmit = e =>{
         e.preventDefault();
         window.location.href = `https://www.google.co.kr/search?q=${searchText}`;
-    }
+    };
 
     return (
         <SearchInput
