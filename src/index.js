@@ -25,6 +25,8 @@ function loadInfo(){
             { offset: '1.00', color: 'rgb(109, 213, 237)' }
         ],
         backgroundAngle:180,
+        searchTool : 'google',
+        openMode : 'now',
         menu:[],
       };
       setCookie("info",JSON.stringify(basicInfo));

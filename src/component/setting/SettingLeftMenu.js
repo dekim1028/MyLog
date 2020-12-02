@@ -42,8 +42,8 @@ const SettingLeftMenu = ({view,onClickMenu}) => {
                 화면색상
             </Setting>
             <Setting
-                onClick={()=>onClickMenu('search')}
-                className={cn({selected:view==='search'})}
+                onClick={()=>onClickMenu('searchTool')}
+                className={cn({selected:view==='searchTool'})}
             >
                 검색
             </Setting>

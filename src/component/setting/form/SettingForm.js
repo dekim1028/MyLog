@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewColorContainer from '../../../container/setting/form/ViewColorContainer';
+import SearchToolContainer from '../../../container/setting/form/SearchToolContainer';
 
 const SettingForm = ({view}) => {
     return (
@@ -10,9 +11,9 @@ const SettingForm = ({view}) => {
                 )
             }
             {
-                view==='search' &&(
+                view==='searchTool' &&(
                     <>
-                        
+                        <SearchToolContainer/>
                     </>
                 )
             }

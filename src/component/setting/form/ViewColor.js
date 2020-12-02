@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { SketchPicker } from 'react-color';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
 import {rgbToRgba} from '../../../lib/colorFormart';
+import SaveBtn from '../../common/SaveBtn';
 
 const ViewColorBlock = styled.div`
     .gpw{
@@ -30,24 +31,6 @@ const Title = styled.h1`
     margin-bottom:10px;
     font-size:13px;
     font-weight:normal;
-`;
-
-const SaveBtn = styled.button`
-    position:absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color:white;
-    border: none;
-    outline:none;
-    font-size: 12px;
-    padding: 3px 15px;
-    border-radius: 5px;
-    box-shadow: 0px 1px 1px grey;
-    cursor: pointer;
-    
-    &:hover{
-        background: #F2F2F2;
-    }
 `;
 
 const WrappedSketchPicker = ({ onSelect, ...rest }) => {
