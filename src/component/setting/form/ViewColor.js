@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { SketchPicker } from 'react-color';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
 import {rgbToRgba} from '../../../lib/colorFormart';
-import SaveBtn from '../../common/SaveBtn';
+import SettingBtn from '../../common/SettingBtn';
 
 const ViewColorBlock = styled.div`
     .gpw{
@@ -62,7 +62,7 @@ const ViewColor = ({open,setOpen,angle,setAngle,palette,setPalette,onClick}) => 
             }}>
                 <WrappedSketchPicker/>
             </GradientPickerPopover>
-            <SaveBtn onClick={onClick}>저장</SaveBtn>
+            <SettingBtn onClick={onClick}>저장</SettingBtn>
         </ViewColorBlock>
     );
 };

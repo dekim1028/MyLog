@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './modules';
-import { getCookie, setCookie } from './lib/cookie';
+import { getCookie, setCookie, initialCookie } from './lib/cookie';
 import { setInfo } from './modules/info';
 
 const store = createStore(rootReducer,composeWithDevTools());
@@ -19,18 +19,8 @@ function loadInfo(){
     if(info){
       store.dispatch(setInfo(JSON.parse(info)));
     }else{
-      const basicInfo = {
-        background: [
-            { offset: '0.00', color: 'rgb(33, 147, 176)' },
-            { offset: '1.00', color: 'rgb(109, 213, 237)' }
-        ],
-        backgroundAngle:180,
-        searchTool : 'google',
-        openMode : 'now',
-        menu:[],
-      };
-      setCookie("info",JSON.stringify(basicInfo));
-      store.dispatch(setInfo(basicInfo));
+      setCookie("info",JSON.stringify(initialCookie));
+      store.dispatch(setInfo(initialCookie));
     }
   }catch(e){
     console.log(e);

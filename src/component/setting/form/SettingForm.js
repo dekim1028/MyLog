@@ -1,6 +1,7 @@
 import React from 'react';
 import ViewColorContainer from '../../../container/setting/form/ViewColorContainer';
 import SearchToolContainer from '../../../container/setting/form/SearchToolContainer';
+import ResetContainer from '../../../container/setting/form/ResetContainer';
 
 const SettingForm = ({view}) => {
     return (
@@ -27,7 +28,7 @@ const SettingForm = ({view}) => {
             {
                 view==='reset' &&(
                     <>
-                        
+                        <ResetContainer/>
                     </>
                 )
             }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SaveBtn from '../../common/SaveBtn';
+import SettingBtn from '../../common/SettingBtn';
 
 const SearchToolBlock = styled.div``;
 
@@ -42,7 +42,7 @@ const SearchTool = ({searchTool,onChange,onClick}) => {
                     <option value="new">새 창</option>
                 </StyledSelectBox>
             </Wrap>
-            <SaveBtn onClick={onClick}>저장</SaveBtn>
+            <SettingBtn onClick={onClick}>저장</SettingBtn>
         </SearchToolBlock>
     );
 };

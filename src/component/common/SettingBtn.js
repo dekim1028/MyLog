@@ -19,11 +19,11 @@ const ButtonBlock = styled.button`
     }
 `;
 
-const SaveBtn = props => {
+const SettingBtn = props => {
     return (
         <ButtonBlock {...props}/>
         
     );
 };
 
-export default SaveBtn;
+export default SettingBtn;

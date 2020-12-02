@@ -30,7 +30,6 @@ const SearchInputContainer = () => {
                 window.location.href = searchUrl;
             }
         }
-        
     };
 
     return (
