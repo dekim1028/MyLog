@@ -18,10 +18,10 @@ const Wrap = styled.div`
     }
 `;
 
-const Main = ({info,settingPopupVisible,onShowSettingPopup}) => {
-    if(!info) return null;
+const Main = ({background,settingPopupVisible,onShowSettingPopup}) => {
+    if(!background) return null;
     return (
-        <MainBlock style={{background:info.background}}>
+        <MainBlock style={{background}}>
             <Wrap>
                 <SearchInputContainer/>
                 <MenuContainer onShowSettingPopup={onShowSettingPopup}/>

@@ -3,7 +3,7 @@ import ViewColorContainer from '../../../container/setting/form/ViewColorContain
 
 const SettingForm = ({view}) => {
     return (
-        <form>
+        <>
             {
                 view==='viewColor' &&(
                     <ViewColorContainer/>
@@ -30,7 +30,7 @@ const SettingForm = ({view}) => {
                     </>
                 )
             }
-        </form>
+        </>
     );
 };
 

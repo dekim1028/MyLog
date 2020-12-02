@@ -1,8 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Main from '../component/Main';
 import { useSelector } from 'react-redux';
+import { paletteToCss } from '../lib/colorFormart';
 
 const MainContainer = () => {
+    const [background,setBackground] = useState(null);
     const [settingPopupVisible,setSettingPopupVisible] = useState(false);
     const {info} = useSelector(({info})=>({
         info:info.info,
@@ -13,9 +15,15 @@ const MainContainer = () => {
         setSettingPopupVisible(!settingPopupVisible);
     };
 
+    useEffect(()=>{
+        if(info){
+            setBackground(paletteToCss(info.background,info.backgroundAngle));
+        }
+    },[info]);
+
     return (
         <Main
-            info={info} 
+            background={background} 
             settingPopupVisible={settingPopupVisible}
             onShowSettingPopup={onShowSettingPopup}
         />

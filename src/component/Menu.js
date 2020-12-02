@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {AiTwotoneSetting} from 'react-icons/ai';
+import { paletteToCss } from '../lib/colorFormart';
 
 const MenuBlock = styled.div`
     width: 500px;
@@ -128,7 +129,7 @@ const Menu = ({info,menuVisible,onShowMenu,onShowSettingPopup}) => {
                 </MenuList>
             </CircleMenu>
             <CircleBtn onClick={onShowMenu}>
-                <InnerCircleBtn style={{background:info.background}}>
+                <InnerCircleBtn style={{background:paletteToCss(info.background,info.backgroundAngle)}}>
                     { menuVisible && <SettingBtn onClick={onShowSettingPopup}/>}
                 </InnerCircleBtn>
             </CircleBtn>

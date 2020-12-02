@@ -64,6 +64,7 @@ const SettingBody = styled.div`
 `;
 
 const SettingContent = styled.div`
+    position: relative;
     width: 355px;
     height: 100%;
     border-radius: 5px;

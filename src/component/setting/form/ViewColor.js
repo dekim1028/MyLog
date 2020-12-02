@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SketchPicker } from 'react-color';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
+import {rgbToRgba} from '../../../lib/colorFormart';
 
 const ViewColorBlock = styled.div`
     .gpw{
@@ -16,6 +17,11 @@ const ViewColorBlock = styled.div`
                 height: 100%;
             }
         }
+
+        .popover{
+            position:fixed;
+            background:white;
+        }
     }
 `;
 
@@ -26,9 +32,23 @@ const Title = styled.h1`
     font-weight:normal;
 `;
 
-const rgbToRgba = (rgb, a = 1) => {
-    return rgb.replace('rgb(', 'rgba(').replace(')', `, ${a})`);
-};
+const SaveBtn = styled.button`
+    position:absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color:white;
+    border: none;
+    outline:none;
+    font-size: 12px;
+    padding: 3px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px grey;
+    cursor: pointer;
+    
+    &:hover{
+        background: #F2F2F2;
+    }
+`;
 
 const WrappedSketchPicker = ({ onSelect, ...rest }) => {
     return (
@@ -41,7 +61,7 @@ const WrappedSketchPicker = ({ onSelect, ...rest }) => {
     );
 };
 
-const ViewColor = ({open,setOpen,angle,setAngle,palette,setPalette}) => {
+const ViewColor = ({open,setOpen,angle,setAngle,palette,setPalette,onClick}) => {
     return (
         <ViewColorBlock>
             <Title>배경색상 선택 :</Title>
@@ -59,6 +79,7 @@ const ViewColor = ({open,setOpen,angle,setAngle,palette,setPalette}) => {
             }}>
                 <WrappedSketchPicker/>
             </GradientPickerPopover>
+            <SaveBtn onClick={onClick}>저장</SaveBtn>
         </ViewColorBlock>
     );
 };

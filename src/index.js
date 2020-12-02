@@ -20,7 +20,11 @@ function loadInfo(){
       store.dispatch(setInfo(JSON.parse(info)));
     }else{
       const basicInfo = {
-        background:"linear-gradient(to right, #2193b0, #6dd5ed)",
+        background: [
+            { offset: '0.00', color: 'rgb(33, 147, 176)' },
+            { offset: '1.00', color: 'rgb(109, 213, 237)' }
+        ],
+        backgroundAngle:180,
         menu:[],
       };
       setCookie("info",JSON.stringify(basicInfo));
