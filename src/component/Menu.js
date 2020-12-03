@@ -114,7 +114,7 @@ const Menu = ({info,menuVisible,onShowMenu,onShowSettingPopup}) => {
         <MenuBlock>
             <CircleMenu style={{background:menuVisible?"rgb(255,255,255,0.2)":"rgb(255,255,255,0)"}}>
                 <MenuList style={{opacity:menuVisible?1:0}}>
-                    {
+                    {/*
                         info.menu.map(menu=>(
                             <MenuListItem>
                                 <MenuItem style={{transform:"rotate(0) translateY(20px) translateX(73px)"}}>
@@ -124,7 +124,7 @@ const Menu = ({info,menuVisible,onShowMenu,onShowSettingPopup}) => {
                                     <MenuTitle>메뉴명</MenuTitle>
                                 </MenuItem>
                             </MenuListItem>
-                        ))
+                        ))*/
                     }
                 </MenuList>
             </CircleMenu>

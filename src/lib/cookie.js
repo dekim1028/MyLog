@@ -6,7 +6,13 @@ export const initialCookie = {
     backgroundAngle:180,
     searchTool : 'google',
     openMode : 'now',
-    menu:[],
+    menu:{
+        portal:[],
+        sns:[],
+        streaming:[],
+        blog:[],
+        mylog:[],
+    },
 };
 
 // 쿠키 조회
