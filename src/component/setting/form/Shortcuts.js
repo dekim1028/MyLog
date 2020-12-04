@@ -7,7 +7,7 @@ const ShortcutsBlock = styled.div``;
 const ShortcutsWrap = styled.div`
     width:100%;
     height: 275px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color:white;
     border-radius:5px;
     padding: 10px;
@@ -51,7 +51,7 @@ const IconImage = styled.img`
 const ShortcutIcon = ({item,onChange,checkExist})=>{
     return (
         <Icon>
-            <IconImage src={item.url} alt={item.id}/>
+            <IconImage src={item.image} alt={item.id}/>
             <IconCheckbox type="checkbox" name={item.type} onChange={onChange} value={JSON.stringify(item)} checked={checkExist(item)?'checked':''}/>
             <div className="text">{item.name}</div>
         </Icon>

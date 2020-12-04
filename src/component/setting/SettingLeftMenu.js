@@ -54,6 +54,12 @@ const SettingLeftMenu = ({view,onClickMenu}) => {
                 바로가기
             </Setting>
             <Setting
+                onClick={()=>onClickMenu('mylog')}
+                className={cn({selected:view==='mylog'})}
+            >
+                MyLog
+            </Setting>
+            <Setting
                 onClick={()=>onClickMenu('reset')}
                 className={cn({selected:view==='reset'})}
             >

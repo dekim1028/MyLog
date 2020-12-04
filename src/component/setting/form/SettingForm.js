@@ -3,6 +3,7 @@ import ViewColorContainer from '../../../container/setting/form/ViewColorContain
 import SearchToolContainer from '../../../container/setting/form/SearchToolContainer';
 import ResetContainer from '../../../container/setting/form/ResetContainer';
 import ShortcutsContainer from '../../../container/setting/form/ShortcutsContainer';
+import MyLogContainer from '../../../container/setting/form/MyLogContainer';
 
 const SettingForm = ({view}) => {
     return (
@@ -20,6 +21,11 @@ const SettingForm = ({view}) => {
             {
                 view==='shortcuts' &&(
                     <ShortcutsContainer/>
+                )
+            }
+            {
+                view==='mylog' &&(
+                    <MyLogContainer/>
                 )
             }
             {
