@@ -28,6 +28,7 @@ const SearchToolContainer = () => {
         
         setCookie("info",JSON.stringify(basicInfo));
         dispatch(setInfo(basicInfo));
+        alert("저장되었습니다.");
     };
 
     useEffect(()=>{

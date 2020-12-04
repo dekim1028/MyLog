@@ -104,7 +104,7 @@ const Shortcuts = ({shortcutsList,onChange,onClick,checkExist}) => {
                     }
                 </Wrap>
             </ShortcutsWrap>
-            <SettingBtn onClick={onClick}>선택항목 추가</SettingBtn>
+            <SettingBtn onClick={onClick}>선택항목 수정</SettingBtn>
         </ShortcutsBlock>
     );
 };

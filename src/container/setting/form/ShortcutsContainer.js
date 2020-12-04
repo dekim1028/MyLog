@@ -35,13 +35,22 @@ const ShortcutsContainer = () => {
     }
 
     const onClick = () =>{
+        const mylog = info.menu.mylog.map(item=>{
+            item.checked=checkExist(item);
+            return item;
+        });
+
         const basicInfo = {
             ...info,
-            menu:myShortcuts
+            menu:{
+                ...myShortcuts,
+                mylog
+            }
         };
         
         setCookie("info",JSON.stringify(basicInfo));
         dispatch(setInfo(basicInfo));
+        alert("수정되었습니다.");
     };
 
     const checkExist = (item) =>{
@@ -55,8 +64,16 @@ const ShortcutsContainer = () => {
 
     useEffect(()=>{
         if(info){
-            setShortcutsList({...shortcutsInfo});
-            setMyShortcuts(info.menu);
+            setShortcutsList({
+                ...shortcutsInfo,
+                mylog:info.menu.mylog,
+            });
+
+            const mylog = info.menu.mylog.filter(item=>item.checked);
+            setMyShortcuts({
+                ...info.menu,
+                mylog,
+            });
         }
     },[info]);
 

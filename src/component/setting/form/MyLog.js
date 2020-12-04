@@ -78,9 +78,9 @@ const IconImage = styled.img`
     height: 40px;
 `;
 
-const MyLogIcon = ({item,onChecked})=>{
+const MyLogIcon = ({item,selected,onChecked})=>{
     return (
-        <Icon className={cn({checked:item.checked})} onClick={()=>onChecked(item)}>
+        <Icon className={cn({checked:item.id===selected})} onClick={()=>onChecked(item)}>
             <IconWrap>
                 <IconImage src={item.image} alt={item.id}/>
             </IconWrap>
@@ -89,7 +89,7 @@ const MyLogIcon = ({item,onChecked})=>{
     )
 };
 
-const MyLog = ({newLog,myLog,update,onChange,onAdd,onUpdate,onDelete,onChecked}) => {
+const MyLog = ({newLog,myLog,selected,update,onChange,onAdd,onUpdate,onDelete,onChecked}) => {
     if(!myLog) return null;
     return (
         <MyLogBlock>
@@ -110,7 +110,7 @@ const MyLog = ({newLog,myLog,update,onChange,onAdd,onUpdate,onDelete,onChecked})
             <Wrap>
                 {
                     myLog.map(item=>(
-                        <MyLogIcon key={item.id} item={item} onChecked={onChecked}/>
+                        <MyLogIcon key={item.id} item={item} selected={selected} onChecked={onChecked}/>
                     ))
                 }
             </Wrap>

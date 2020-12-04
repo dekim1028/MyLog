@@ -7,6 +7,7 @@ import { setInfo } from '../../../modules/info';
 const MyLogContainer = () => {
     const dispatch = useDispatch();
     const [update,setUpdate] = useState(false);
+    const [selected,setSelected] = useState(null);
     const [myLog,setMyLog] = useState([]);
     const [newLog,setNewLog] = useState({
         id:'',
@@ -21,6 +22,7 @@ const MyLogContainer = () => {
     }));
 
     const initializeNewLog = () =>{
+        setSelected(null);
         setNewLog({
             id:'',
             name:'',
@@ -69,6 +71,8 @@ const MyLogContainer = () => {
         dispatch(setInfo(basicInfo));
 
         initializeNewLog();
+
+        alert("추가되었습니다.");
     };
 
     const onUpdate = () =>{
@@ -80,8 +84,7 @@ const MyLogContainer = () => {
                 return {
                     ...newLog,
                     id:domain,
-                    image,
-                    checked:false,
+                    image
                 }
             }else{
                 return item;
@@ -101,6 +104,8 @@ const MyLogContainer = () => {
 
         setUpdate(false);
         initializeNewLog();
+
+        alert("수정되었습니다.");
     };
 
     const onDelete = () =>{
@@ -120,6 +125,8 @@ const MyLogContainer = () => {
     
             setUpdate(false);
             initializeNewLog();
+
+            alert("삭제되었습니다.");
         }else{
             alert("선택된 항목이 없습니다.");
         }
@@ -127,28 +134,14 @@ const MyLogContainer = () => {
     };
 
     const onChecked = target =>{
-        setMyLog(myLog.map(item=>{
-            if(item.id===target.id){
-                item.checked=true;
-            }else{
-                item.checked=false;
-            }
-            return item;
-        }));
-
-        setNewLog({
-            ...target
-        });
-
+        setSelected(target.id);
+        setNewLog(target);
         setUpdate(true);
     };
 
     useEffect(()=>{
         if(info){
-            setMyLog(info.menu.mylog.map(item=>{
-                item.checked=false;
-                return item;
-            }));
+            setMyLog(info.menu.mylog);
         }
     },[info]);
 
@@ -156,6 +149,7 @@ const MyLogContainer = () => {
         <MyLog
             newLog={newLog}
             myLog={myLog}
+            selected={selected}
             update={update}
             onChange={onChange}
             onAdd={onAdd}
