@@ -12,7 +12,8 @@ const MenuBlock = styled.div`
 
 const MenuBox = styled.div`
     width:100%;
-    height:100%;
+    height: 440px;
+    overflow-y:auto;
     padding: 10px 45px;
 `;
 
@@ -22,6 +23,13 @@ const MenuList = styled.ul`
     margin: 0;
     padding: 0;
     text-align:left;
+`;
+
+const NoData = styled.li`
+    text-align:center;
+    list-style-type:none;
+    color: rgba(0,0,0,0.6);
+    padding-top:190px;
 `;
 
 const MenuListItem = styled.li`
@@ -69,7 +77,7 @@ const SettingBtn = styled(AiTwotoneSetting)`
     }
 `;
 
-const Menu = ({info,menuList,settingPopupVisible,onShowSettingPopup}) => {
+const Menu = ({info,menuList,settingPopupVisible,onShowSettingPopup,onClickLink}) => {
     if(!info||!menuList) return null;
     return (
         <MenuBlock>
@@ -77,12 +85,12 @@ const Menu = ({info,menuList,settingPopupVisible,onShowSettingPopup}) => {
             <MenuBox>
                 <MenuList>
                     {
-                        menuList.map(menu=>(
-                            <MenuListItem key={menu.id}>
+                        menuList.length>0?menuList.map(menu=>(
+                            <MenuListItem key={menu.id} onClick={()=>onClickLink(menu.url)}>
                                 <MenuIcon src={menu.image}/>
                                 <MenuTitle>{menu.name}</MenuTitle>
                             </MenuListItem>
-                        ))
+                        )):<NoData>추가된 항목이 없습니다</NoData>
                     }
                 </MenuList>
             </MenuBox>

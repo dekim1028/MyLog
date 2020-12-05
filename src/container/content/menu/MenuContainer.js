@@ -15,6 +15,14 @@ const MenuContainer = () => {
         setSettingPopupVisible(!settingPopupVisible);
     };
 
+    const onClickLink = (url) =>{
+        if(info.openMode==='new'){
+            window.open(url);
+        }else{
+            window.location.href = url;
+        }
+    };
+
     useEffect(()=>{
         if(info){
             let arr = [];
@@ -41,6 +49,7 @@ const MenuContainer = () => {
             menuList={menuList}
             settingPopupVisible={settingPopupVisible}
             onShowSettingPopup={onShowSettingPopup}
+            onClickLink={onClickLink}
         />
     );
 };
