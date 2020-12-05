@@ -6,6 +6,7 @@ import {rgbToRgba} from '../../../lib/colorFormart';
 import SettingBtn from '../../common/SettingBtn';
 
 const ViewColorBlock = styled.div`
+    text-align: left;
     .gpw{
         padding:0;
         

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchInputContainer from '../container/SearchInputContainer';
-import MenuContainer from '../container/MenuContainer';
+import ContentContainer from '../container/content/ContentContainer';
 import SettingPopupContainer from '../container/setting/SettingPopupContainer';
 
 const MainBlock = styled.div`
@@ -9,24 +9,23 @@ const MainBlock = styled.div`
 `;
 
 const Wrap = styled.div`
-    width: 500px;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 12em;
+    padding-top: 10em;
     @media (max-width:768px){
         width:80%;
     }
 `;
 
-const Main = ({background,settingPopupVisible,onShowSettingPopup}) => {
+const Main = ({background}) => {
     if(!background) return null;
     return (
         <MainBlock style={{background}}>
             <Wrap>
                 <SearchInputContainer/>
-                <MenuContainer onShowSettingPopup={onShowSettingPopup}/>
+                <ContentContainer background={background}/>
             </Wrap>
-            { settingPopupVisible && <SettingPopupContainer onShowSettingPopup={onShowSettingPopup}/>}
         </MainBlock>
     );
 };

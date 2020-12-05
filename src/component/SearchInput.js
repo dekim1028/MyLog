@@ -8,6 +8,7 @@ const SearchInputBlock = styled.form`
     display:flex;
     align-items:center;
     justify-content:center;
+    margin: 0 auto;
     padding: 0 10px;
     background:white;
     box-shadow:0 1px 6px rgba(32, 33, 36, .28);

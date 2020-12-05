@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import SettingBtn from '../../common/SettingBtn';
 
-const ResetBlock = styled.div``;
+const ResetBlock = styled.div`
+    text-align: left;
+`;
 
 const Title = styled.h1`
     margin:0;

@@ -4,7 +4,9 @@ import {RiAddLine, RiEditLine} from 'react-icons/ri';
 import cn from 'classnames';
 import SettingBtn from '../../common/SettingBtn';
 
-const MyLogBlock = styled.div``;
+const MyLogBlock = styled.div`
+    text-align: left;
+`;
 
 const InputBlock = styled.div`
     width: 100%;

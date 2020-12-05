@@ -5,15 +5,10 @@ import { paletteToCss } from '../lib/colorFormart';
 
 const MainContainer = () => {
     const [background,setBackground] = useState(null);
-    const [settingPopupVisible,setSettingPopupVisible] = useState(false);
+
     const {info} = useSelector(({info})=>({
         info:info.info,
     }));
-
-    const onShowSettingPopup = e =>{
-        e.stopPropagation();
-        setSettingPopupVisible(!settingPopupVisible);
-    };
 
     useEffect(()=>{
         if(info){
@@ -23,9 +18,7 @@ const MainContainer = () => {
 
     return (
         <Main
-            background={background} 
-            settingPopupVisible={settingPopupVisible}
-            onShowSettingPopup={onShowSettingPopup}
+            background={background}
         />
     );
 };

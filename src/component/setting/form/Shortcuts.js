@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import SettingBtn from '../../common/SettingBtn';
 
-const ShortcutsBlock = styled.div``;
+const ShortcutsBlock = styled.div`
+    text-align: left;
+`;
 
 const ShortcutsWrap = styled.div`
     width:100%;

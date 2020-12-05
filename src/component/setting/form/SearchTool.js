@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import SettingBtn from '../../common/SettingBtn';
 
-const SearchToolBlock = styled.div``;
+const SearchToolBlock = styled.div`
+    text-align: left;
+`;
 
 const Wrap = styled.div`
     margin-bottom:10px;
