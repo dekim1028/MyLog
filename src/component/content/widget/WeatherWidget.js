@@ -7,8 +7,11 @@ import '../../../style/weather/css/weather-icons-wind.min.css'
 import '../../../style/weather/css/weather-icons.min.css'
 
 const WeatherWidgetBlock = styled.div`
-    width:250px;
-    height:100%;
+    width:250px; 
+    height : calc(100% - 10px);
+    height : -webkit-calc(100% - 10px);
+    height : -moz-calc(100% - 10px);
+    margin:5px;
     background-color:rgba(255,255,255,0.4);
     border-radius:4px;
     overflow:hidden;
@@ -25,9 +28,7 @@ const Header = styled.div`
     }
 `;
 
-const Content = styled.div`
-
-`;
+const Content = styled.div``;
 
 const WeatherIcon=styled.i`
     width: 100%;
@@ -109,7 +110,7 @@ const WeatherWidget = ({weatherData}) => {
                     <div className="etc">
                         <div>
                             <i className="wi wi-strong-wind"/>
-                            <h1>{weatherData.wind.speed}m/s</h1>
+                            <h1>{Math.round(weatherData.wind.speed)}m/s</h1>
                         </div>
                         <div>
                             <i className="wi wi-humidity"/>
