@@ -19,10 +19,8 @@ const Wrap = styled.div`
 const SettingPopupBlock = styled.div`
     width:550px;
     height:400px;
-    overflow: hidden;
-    border-radius: 10px;
-    background: white;
     box-shadow: 0 2px 10px #585858;
+    border-radius: 10px;
 `;
 
 const SettingHeader = styled.div`
@@ -32,6 +30,7 @@ const SettingHeader = styled.div`
     justify-content: flex-end;
     padding: 0 10px;
     background: linear-gradient(to bottom,#D8D8D8,#A4A4A4);
+    border-radius: 10px 10px 0 0;
 `;
 
 const CloseBtn = styled.button`
@@ -62,6 +61,7 @@ const SettingBody = styled.div`
     justify-content:space-between;
     padding:10px;
     background: #E6E6E6;
+    border-radius: 0 0 10px 10px;
 `;
 
 const SettingContent = styled.div`
