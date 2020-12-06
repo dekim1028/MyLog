@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {IoIosClose} from 'react-icons/io';
+import Draggable from 'react-draggable';
 import SettingLeftMenu from './SettingLeftMenu';
 import SettingFormContainer from '../../container/setting/form/SettingFormContainer';
 
@@ -75,6 +76,7 @@ const SettingContent = styled.div`
 const SettingPopup = ({view,onClickMenu,onShowSettingPopup}) => {
     return (
         <Wrap>
+            <Draggable disabled={false} bounds="parent">
             <SettingPopupBlock>
                 <SettingHeader>
                     <CloseBtn onClick={onShowSettingPopup}><IoIosClose/></CloseBtn>
@@ -86,6 +88,7 @@ const SettingPopup = ({view,onClickMenu,onShowSettingPopup}) => {
                     </SettingContent>
                 </SettingBody>
             </SettingPopupBlock>
+            </Draggable>
         </Wrap>
     );
 };
