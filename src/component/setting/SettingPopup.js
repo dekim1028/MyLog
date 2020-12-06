@@ -77,17 +77,17 @@ const SettingPopup = ({view,onClickMenu,onShowSettingPopup}) => {
     return (
         <Wrap>
             <Draggable disabled={false} bounds="parent">
-            <SettingPopupBlock>
-                <SettingHeader>
-                    <CloseBtn onClick={onShowSettingPopup}><IoIosClose/></CloseBtn>
-                </SettingHeader>
-                <SettingBody>
-                    <SettingLeftMenu view={view} onClickMenu={onClickMenu}/>
-                    <SettingContent>
-                        <SettingFormContainer view={view}/>
-                    </SettingContent>
-                </SettingBody>
-            </SettingPopupBlock>
+                <SettingPopupBlock>
+                    <SettingHeader>
+                        <CloseBtn onClick={onShowSettingPopup}><IoIosClose/></CloseBtn>
+                    </SettingHeader>
+                    <SettingBody>
+                        <SettingLeftMenu view={view} onClickMenu={onClickMenu}/>
+                        <SettingContent>
+                            <SettingFormContainer view={view}/>
+                        </SettingContent>
+                    </SettingBody>
+                </SettingPopupBlock>
             </Draggable>
         </Wrap>
     );
