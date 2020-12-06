@@ -14,9 +14,6 @@ const WeatherWidgetContainer = () => {
             async: "false",
         }).then(function(response){
             const {data}=response; 
-            
-            console.log(data);
-
             setWeatherData(data);
         });
     };
