@@ -46,6 +46,15 @@ const StyledCalendar = styled(Calendar)`
     .react-calendar__tile{
         padding: 3px !important;
     }
+
+    .react-calendar__navigation button[disabled]{
+        background:none;
+    }
+
+    .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{
+        background:none;
+        color:white;
+    }
 `;
 
 const CalenderWidget = () => {
