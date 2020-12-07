@@ -1,34 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {IoIosMenu} from 'react-icons/io';
 import '../../../style/weather/css/weather-icons-wind.css'
 import '../../../style/weather/css/weather-icons.css'
 import '../../../style/weather/css/weather-icons-wind.min.css'
 import '../../../style/weather/css/weather-icons.min.css'
+import WidgetTemplate from './WidgetTemplate';
 
-const WeatherWidgetBlock = styled.div`
-    width:250px; 
-    height : calc(100% - 10px);
-    height : -webkit-calc(100% - 10px);
-    height : -moz-calc(100% - 10px);
-    margin:5px;
-    background-color:rgba(255,255,255,0.4);
-    border-radius:4px;
-    overflow:hidden;
+const Content = styled.div`
+    height: 415px;
 `;
-
-const Header = styled.div`
-    width:100%;
-    height: 25px;
-    background-color:rgba(255,255,255,0.3);
-
-    svg{
-        font-size: 25px;
-        color: white;
-    }
-`;
-
-const Content = styled.div``;
 
 const WeatherIcon=styled.i`
     width: 100%;
@@ -94,10 +74,7 @@ const WeatherInfo = styled.div`
 const WeatherWidget = ({weatherData}) => {
     if(!weatherData) return null;
     return (
-        <WeatherWidgetBlock>
-            <Header>
-                <IoIosMenu/>
-            </Header>
+        <WidgetTemplate width="250px" height="455px">
             <Content>
                 <WeatherIcon className={`wi wi-owm-${weatherData.weather[0].id}`}></WeatherIcon>
                 <WeatherInfo>
@@ -123,7 +100,7 @@ const WeatherWidget = ({weatherData}) => {
                     </div>
                 </WeatherInfo>
             </Content>
-        </WeatherWidgetBlock>
+        </WidgetTemplate>
     );
 };
 

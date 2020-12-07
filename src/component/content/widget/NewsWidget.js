@@ -1,31 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import {IoIosMenu} from 'react-icons/io';
-
-const NewsWidgetBlock = styled.div`
-    height : 220px;
-    margin: 5px 5px 10px;
-    background-color:rgba(255,255,255,0.4);
-    border-radius:4px;
-    overflow:hidden;
-`;
-
-const Header = styled.div`
-    width:100%;
-    height: 25px;
-    background-color:rgba(255,255,255,0.3);
-
-    svg{
-        font-size: 25px;
-        color: white;
-    }
-`;
+import WidgetTemplate from './WidgetTemplate';
 
 const Content = styled.div`
-    height:calc(100%-25px);
-    height:-webkit-calc(100% - 25px);
-    height:-moz-calc(100% - 25px);
+    height: 182px;
     display: flex;
     align-items: center;
 `;
@@ -60,6 +39,10 @@ const NewsWrap = styled.div`
     width: 510px;
     height: 100%;
     overflow-x:auto;
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
 `;
 
 const NewsList = styled.ul`
@@ -116,10 +99,7 @@ const NewsText = styled.dl`
 const NewsWidget = ({category,newsData,onClick,goToURL}) => {
     if(!newsData) return null;
     return (
-        <NewsWidgetBlock>
-            <Header>
-                <IoIosMenu/>
-            </Header>
+        <WidgetTemplate width="600px" height="222px">
             <Content>
                 <CategoryWrap>
                     <Category
@@ -175,7 +155,7 @@ const NewsWidget = ({category,newsData,onClick,goToURL}) => {
                     </NewsList>
                 </NewsWrap>
             </Content>
-        </NewsWidgetBlock>
+        </WidgetTemplate>
     );
 };
 
