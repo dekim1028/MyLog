@@ -11,6 +11,7 @@
     "immer": "^8.0.0",
     "rc-color-picker": "^1.2.6",
     "react": "^17.0.1",
+    "react-calendar": "^3.2.1",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",

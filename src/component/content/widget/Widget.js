@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import WeatherWidgetContainer from '../../../container/content/widget/WeatherWidgetContainer';
 import NewsWidgetContainer from '../../../container/content/widget/NewsWidgetContainer';
+import MemoWidgetContainer from '../../../container/content/widget/MemoWidgetContainer';
+import CalenderWidgetContainer from '../../../container/content/widget/CalenderWidgetContainer';
 
 const WidgetBlock = styled.div`
     width: 900px;
@@ -19,12 +21,21 @@ const Block = styled.div`
     height:100%;
 `;
 
+const FlexBlock = styled.div`
+    display:flex;
+    align-items:center;
+`;
+
 const Widget = ({margin}) => {
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
             <WeatherWidgetContainer/>
             <Block>
                 <NewsWidgetContainer/>
+                <FlexBlock>
+                    <CalenderWidgetContainer/>
+                    <MemoWidgetContainer/>
+                </FlexBlock>
             </Block>
         </WidgetBlock>
     );
