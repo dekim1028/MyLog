@@ -13,6 +13,9 @@ export const initialCookie = {
         blog:[],
         mylog:[],
     },
+    widget:{
+        memo:'',
+    }
 };
 
 // 쿠키 조회
