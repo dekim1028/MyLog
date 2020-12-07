@@ -42,7 +42,7 @@ const CalenderWidget = () => {
     return (
         <WidgetTemplate width="295px" height="222px">
             <Content>
-                <StyledCalendar />
+                <StyledCalendar calendarType="US"/>
             </Content>
         </WidgetTemplate>
     );
