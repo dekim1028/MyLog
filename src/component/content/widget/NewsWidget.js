@@ -4,7 +4,6 @@ import cn from 'classnames';
 import {IoIosMenu} from 'react-icons/io';
 
 const NewsWidgetBlock = styled.div`
-    width:100%;
     height : 220px;
     margin: 5px 5px 10px;
     background-color:rgba(255,255,255,0.4);
