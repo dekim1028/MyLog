@@ -37,7 +37,7 @@ const MemoWidget = ({info,onChange}) => {
         <WidgetTemplate width="295px" height="222px">
             <Content>
                 <Title>Memo</Title>
-                <TextArea onChange={onChange}>{info.widget.memo}</TextArea>
+                <TextArea onChange={onChange} value={info.widget.memo}>{info.widget.memo}</TextArea>
             </Content>
         </WidgetTemplate>
     );

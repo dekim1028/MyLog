@@ -30,13 +30,9 @@ const Widget = ({margin}) => {
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
             <WeatherWidgetContainer/>
-            <Block>
-                <NewsWidgetContainer/>
-                <FlexBlock>
-                    <CalenderWidgetContainer/>
-                    <MemoWidgetContainer/>
-                </FlexBlock>
-            </Block>
+            <NewsWidgetContainer/>
+            <CalenderWidgetContainer/>
+            <MemoWidgetContainer/>
         </WidgetBlock>
     );
 };

@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled,{css} from 'styled-components';
+import Draggable from 'react-draggable';
 import {IoIosMenu} from 'react-icons/io';
 import {GiResize} from 'react-icons/gi';
 
@@ -15,6 +16,7 @@ const WidgetTemplateBlock = styled.div`
     background-color:rgba(255,255,255,0.4);
     border-radius:4px;
     overflow:hidden;
+    position:absolute;
 `;
 
 const Header = styled.div`
@@ -41,16 +43,25 @@ const ResizeBtn = styled(GiResize)`
 `;
 
 const WidgetTemplate = ({width,height,children}) => {
+    const [position,setPosition] = useState({x: 0, y: 0});
+
+    const onDrag = (data,pos) =>{
+        const posX = pos.x<0?0:pos.x;
+        setPosition({x:posX,y:pos.y});
+    };
+
     return (
-        <WidgetTemplateBlock width={width} height={height}>
-            <Header>
-                <IoIosMenu/>
-            </Header>
-            {children}
-            <Footer>
-                <ResizeBtn/>
-            </Footer>
-        </WidgetTemplateBlock>
+        <Draggable onDrag={onDrag} position={position}>
+            <WidgetTemplateBlock width={width} height={height}>
+                    <Header>
+                        <IoIosMenu/>
+                    </Header>
+                    {children}
+                    <Footer>
+                        <ResizeBtn/>
+                    </Footer>
+            </WidgetTemplateBlock>
+        </Draggable>
     );
 };
 
