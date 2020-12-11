@@ -8,6 +8,7 @@ import CalenderWidgetContainer from '../../../container/content/widget/CalenderW
 const WidgetBlock = styled.div`
     width: 900px;
     height: 500px;
+    position:relative;
     display:flex;
     transition:1s;
     background-color: rgba(255,255,255,0.3);

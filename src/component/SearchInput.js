@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {FaSearch} from 'react-icons/fa';
 
 const SearchInputBlock = styled.form`
-    width:500px;
+    width:600px;
     height: 3em;
     display:flex;
     align-items:center;
