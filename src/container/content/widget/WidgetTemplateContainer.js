@@ -6,21 +6,25 @@ import { setInfo } from '../../../modules/info';
 
 const WidgetTemplateContainer = ({name,children}) => {
     const dispatch = useDispatch();
-    const [widget,setWidget] = useState(null);
-    const [widgetData,setWidgetData] = useState({
-        posX:0,
-        posY:0,
-        width:0,
-        height:0,
-    });
+    const [widgetData,setWidgetData] = useState(null);
 
     const {info} = useSelector(({info})=>({
         info:info.info,
     }));
 
     const onDrag = (data,pos) =>{
-        const posX = pos.x<0?0:pos.x;
-        const posY = widgetData.height<455?pos.y:0;
+        //범위 벗어나는 경우 원래 위치로
+        let posX = pos.x<0?0:pos.x; //왼쪽
+        let posY = pos.y<0?0:pos.y; //위
+
+        if(posX>860-widgetData.width){ //오른쪽
+            posX = widgetData.posX;
+        }
+
+        if(posY>455-widgetData.height){ //아래
+            posY = widgetData.posY;
+        }
+
         setWidgetData({...widgetData,posX,posY});
     };
 
@@ -29,8 +33,21 @@ const WidgetTemplateContainer = ({name,children}) => {
     };
 
     const onResizing =(data,pos) =>{
-        const width = widgetData.width+pos.deltaX;
-        const height = widgetData.height+pos.deltaY;
+        let width = widgetData.width+pos.deltaX;
+        let height = widgetData.height+pos.deltaY;
+
+        if(width>860){
+            width=860;
+        }else if(width<widgetData.minWidth){
+            width=widgetData.minWidth;
+        }
+
+        if(height>455){
+            height=455;
+        }else if(height<=widgetData.minHeight){
+            height=widgetData.minHeight;
+        }
+
         setWidgetData({...widgetData,width,height});
     };
     
@@ -48,20 +65,8 @@ const WidgetTemplateContainer = ({name,children}) => {
     };
 
     useEffect(()=>{
-        if(widget){
-            const {posX,posY,width,height} = widget;
-            setWidgetData({
-                posX,
-                posY,
-                width,
-                height,
-            });
-        }
-    },[widget]);
-
-    useEffect(()=>{
         if(info){
-            setWidget(info.widget[name]);
+            setWidgetData(info.widget[name]);
         }
     },[info,name]);
 
