@@ -14,7 +14,31 @@ export const initialCookie = {
         mylog:[],
     },
     widget:{
-        memo:'',
+        weather:{
+            posX:0,
+            posY:0,
+            width:250,
+            height:455,
+        },
+        news:{
+            posX:260,
+            posY:0,
+            width:600,
+            height:222,
+        },
+        calendar:{
+            posX:260,
+            posY:235,
+            width:295,
+            height:222,
+        },
+        memo:{
+            posX:565,
+            posY:235,
+            width:295,
+            height:222,
+            content:'',
+        },
     }
 };
 

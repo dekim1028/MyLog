@@ -4,7 +4,7 @@ import '../../../style/weather/css/weather-icons-wind.css'
 import '../../../style/weather/css/weather-icons.css'
 import '../../../style/weather/css/weather-icons-wind.min.css'
 import '../../../style/weather/css/weather-icons.min.css'
-import WidgetTemplate from './WidgetTemplate';
+import WidgetTemplateContainer from '../../../container/content/widget/WidgetTemplateContainer';
 
 const Content = styled.div`
     height: 415px;
@@ -74,7 +74,7 @@ const WeatherInfo = styled.div`
 const WeatherWidget = ({weatherData}) => {
     if(!weatherData) return null;
     return (
-        <WidgetTemplate width="250px" height="455px">
+        <WidgetTemplateContainer name="weather">
             <Content>
                 <WeatherIcon className={`wi wi-owm-${weatherData.weather[0].id}`}></WeatherIcon>
                 <WeatherInfo>
@@ -100,7 +100,7 @@ const WeatherWidget = ({weatherData}) => {
                     </div>
                 </WeatherInfo>
             </Content>
-        </WidgetTemplate>
+        </WidgetTemplateContainer>
     );
 };
 

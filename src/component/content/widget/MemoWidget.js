@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WidgetTemplate from './WidgetTemplate';
+import WidgetTemplateContainer from '../../../container/content/widget/WidgetTemplateContainer';
 
 const Content = styled.div`
     height: 182px;
@@ -34,12 +34,12 @@ const TextArea = styled.textarea`
 const MemoWidget = ({info,onChange}) => {
     if(!info) return null;
     return (
-        <WidgetTemplate width="295px" height="222px">
+        <WidgetTemplateContainer name="memo">
             <Content>
                 <Title>Memo</Title>
-                <TextArea onChange={onChange} value={info.widget.memo}>{info.widget.memo}</TextArea>
+                <TextArea onChange={onChange} value={info.widget.memo.content}>{info.widget.memo.content}</TextArea>
             </Content>
-        </WidgetTemplate>
+        </WidgetTemplateContainer>
     );
 };
 

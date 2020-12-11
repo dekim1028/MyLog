@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styled,{css} from 'styled-components';
 import Draggable from 'react-draggable';
 import {IoIosMenu} from 'react-icons/io';
@@ -11,8 +11,6 @@ const WidgetTemplateBlock = styled.div`
             height:${props.height?props.height:"auto"};
         `
     }
-
-    margin:5px;
     background-color:rgba(255,255,255,0.4);
     border-radius:4px;
     overflow:hidden;
@@ -42,24 +40,22 @@ const ResizeBtn = styled(GiResize)`
     cursor:se-resize;
 `;
 
-const WidgetTemplate = ({width,height,children}) => {
-    const [position,setPosition] = useState({x: 0, y: 0});
-
-    const onDrag = (data,pos) =>{
-        const posX = pos.x<0?0:pos.x;
-        setPosition({x:posX,y:pos.y});
-    };
-
+const WidgetTemplate = ({widgetData,onDrag,onDragPrevent,onResizing,onStop,children}) => {
+    if(!widgetData) return null;
     return (
-        <Draggable onDrag={onDrag} position={position}>
-            <WidgetTemplateBlock width={width} height={height}>
+        <Draggable onDrag={onDrag} onStop={onStop} position={{x:widgetData.posX,y:widgetData.posY}}>
+            <WidgetTemplateBlock width={`${widgetData.width}px`} height={`${widgetData.height}px`}>
                     <Header>
                         <IoIosMenu/>
                     </Header>
-                    {children}
-                    <Footer>
-                        <ResizeBtn/>
-                    </Footer>
+                    <div onMouseDown={onDragPrevent}>
+                        {children}
+                        <Footer>
+                            <Draggable onDrag={onResizing} onStop={onStop}>
+                                <ResizeBtn/>
+                            </Draggable>
+                        </Footer>
+                    </div>
             </WidgetTemplateBlock>
         </Draggable>
     );

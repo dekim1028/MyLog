@@ -14,18 +14,6 @@ const WidgetBlock = styled.div`
     padding:20px;
 `;
 
-const Block = styled.div`
-    width:calc(100%-250px);
-    width : -webkit-calc(100% - 250px);
-    width : -moz-calc(100% - 250px);
-    height:100%;
-`;
-
-const FlexBlock = styled.div`
-    display:flex;
-    align-items:center;
-`;
-
 const Widget = ({margin}) => {
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import WidgetTemplate from './WidgetTemplate';
+import WidgetTemplateContainer from '../../../container/content/widget/WidgetTemplateContainer';
 
 const Content = styled.div`
     height: 182px;
@@ -40,11 +40,11 @@ const StyledCalendar = styled(Calendar)`
 
 const CalenderWidget = () => {
     return (
-        <WidgetTemplate width="295px" height="222px">
+        <WidgetTemplateContainer name="calendar">
             <Content>
                 <StyledCalendar calendarType="US"/>
             </Content>
-        </WidgetTemplate>
+        </WidgetTemplateContainer>
     );
 };
 

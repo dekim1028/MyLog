@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import WidgetTemplate from './WidgetTemplate';
+import WidgetTemplateContainer from '../../../container/content/widget/WidgetTemplateContainer';
 
 const Content = styled.div`
     height: 182px;
@@ -99,7 +99,7 @@ const NewsText = styled.dl`
 const NewsWidget = ({category,newsData,onClick,goToURL}) => {
     if(!newsData) return null;
     return (
-        <WidgetTemplate width="600px" height="222px">
+        <WidgetTemplateContainer name="news">
             <Content>
                 <CategoryWrap>
                     <Category
@@ -155,7 +155,7 @@ const NewsWidget = ({category,newsData,onClick,goToURL}) => {
                     </NewsList>
                 </NewsWrap>
             </Content>
-        </WidgetTemplate>
+        </WidgetTemplateContainer>
     );
 };
 
