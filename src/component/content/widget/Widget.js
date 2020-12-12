@@ -15,13 +15,14 @@ const WidgetBlock = styled.div`
     padding:20px;
 `;
 
-const Widget = ({margin}) => {
+const Widget = ({margin,info}) => {
+    if(!info) return null;
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
-            <WeatherWidgetContainer/>
-            <NewsWidgetContainer/>
-            <CalenderWidgetContainer/>
-            <MemoWidgetContainer/>
+            {info.widget.weather.show && <WeatherWidgetContainer/>}
+            {info.widget.news.show && <NewsWidgetContainer/>}
+            {info.widget.calendar.show && <CalenderWidgetContainer/>}
+            {info.widget.memo.show &&<MemoWidgetContainer/>}
         </WidgetBlock>
     );
 };

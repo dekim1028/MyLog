@@ -48,6 +48,12 @@ const SettingLeftMenu = ({view,onClickMenu}) => {
                 검색
             </Setting>
             <Setting
+                onClick={()=>onClickMenu('widgetTool')}
+                className={cn({selected:view==='widgetTool'})}
+            >
+                위젯
+            </Setting>
+            <Setting
                 onClick={()=>onClickMenu('shortcuts')}
                 className={cn({selected:view==='shortcuts'})}
             >

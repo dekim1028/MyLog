@@ -4,6 +4,7 @@ import SearchToolContainer from '../../../container/setting/form/SearchToolConta
 import ResetContainer from '../../../container/setting/form/ResetContainer';
 import ShortcutsContainer from '../../../container/setting/form/ShortcutsContainer';
 import MyLogContainer from '../../../container/setting/form/MyLogContainer';
+import WidgetToolContainer from '../../../container/content/widget/WidgetToolContainer';
 
 const SettingForm = ({view}) => {
     return (
@@ -16,6 +17,11 @@ const SettingForm = ({view}) => {
             {
                 view==='searchTool' &&(
                     <SearchToolContainer/>
+                )
+            }
+            {
+                view==='widgetTool' &&(
+                    <WidgetToolContainer/>
                 )
             }
             {
