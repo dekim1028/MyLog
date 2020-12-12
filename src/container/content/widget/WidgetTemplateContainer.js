@@ -6,6 +6,7 @@ import { setInfo } from '../../../modules/info';
 
 const WidgetTemplateContainer = ({name,children}) => {
     const dispatch = useDispatch();
+    const [widget,setWidget] = useState(null);
     const [widgetData,setWidgetData] = useState(null);
 
     const {info} = useSelector(({info})=>({
@@ -25,9 +26,9 @@ const WidgetTemplateContainer = ({name,children}) => {
             posY = 455-widgetData.height;
         }
 
-        onMovePosition(posX);
+        onMovePosition(pos.deltaX>0?'right':'left',posX,posY);
 
-        if(onCheckOverlapping({thisX:posX,thisY:posY})){
+        if(Object.keys(onCheckOverlapping({thisX:posX,thisY:posY})).length>0){
             posX = widgetData.posX;
             posY = widgetData.posY;
         }
@@ -56,7 +57,7 @@ const WidgetTemplateContainer = ({name,children}) => {
             height=widgetData.minHeight;
         }
 
-        if(onCheckOverlapping({thisWidth:width,thisHeight:height})){
+        if(Object.keys(onCheckOverlapping({thisWidth:width,thisHeight:height})).length>0){
             width = widgetData.width;
             height = widgetData.height;
         }
@@ -69,15 +70,16 @@ const WidgetTemplateContainer = ({name,children}) => {
             thisX=widgetData.posX,
             thisY=widgetData.posY,
             thisWidth=widgetData.width,
-            thisHeight=widgetData.height
+            thisHeight=widgetData.height,
+            thisNames=[name],
         }
     ) =>{
-        const {widget} = info;
+        let overlapArr = {};
         const thisH = thisX+thisWidth;
         const thisV = thisY+thisHeight;
 
         for(let key in widget){
-            if(key!==name && widget[key].show){
+            if(!thisNames.includes(key) && widget[key].show){
                 const targetX = widget[key].posX;
                 const targetY = widget[key].posY;
                 const targetH = targetX+widget[key].width;
@@ -87,49 +89,57 @@ const WidgetTemplateContainer = ({name,children}) => {
                 const checkHorizontal = (thisX>=targetX&&thisH<=targetH)||(thisX<=targetX&&thisH<=targetH&&thisH>=targetX)||(thisX<=targetH&&thisH>=targetH)||(thisX>=targetX&&thisX<=targetH&&thisH>=targetH);
                 //세로 겹침여부
                 const checkVertical = (thisY>=targetY&&thisV<=targetV)||(thisY<=targetY&&thisV<=targetV&&thisV>=targetY)||(thisY<=targetY&&thisV>=targetV)||(thisY>=targetY&&thisY<=targetV&&thisV>=targetV);
-                
+
                 //겹치면 true
                 if(checkHorizontal&&checkVertical){
-                    return true;
+                    overlapArr = {...overlapArr,[key]:widget[key]};
                 }
             }
         }
-        return false;
+        return overlapArr;
     };
 
-    const onMovePosition = (thisX) =>{
-        const {widget} = info;
-        const thisH = thisX+widgetData.width;
-
-        for(let key in widget){
-            if(key!==name && widget[key].show){
-                const targetX = widget[key].posX;
-                const targetH = targetX+widget[key].width;
+    const onMovePosition = (dir,thisX,thisY) =>{
+        let overlapArr = onCheckOverlapping({thisX,thisY,thisWidth:widgetData.width,thisHeight:widgetData.height});
+        
+        if(dir==='right'){
+            for(let key in overlapArr){
+                const newX = overlapArr[key].posX-widgetData.width-6;
+                const checkOverlap = Object.keys(onCheckOverlapping({
+                    thisX:newX,
+                    thisY:overlapArr[key].posY,
+                    thisWidth:overlapArr[key].width,
+                    thisHeight:overlapArr[key].height,
+                    thisNames:[name,key]
+                })).length>0?true:false;
                 
-                //오른쪽 겹칩여부
-                const rightCheck = thisX>=targetX&&thisX<=targetH&&thisH>=targetH;
+                if(newX>=0&&!checkOverlap){
+                    overlapArr[key].posX=newX;
+                }
+            }
+        }else if(dir==='left'){
+            for(let key in overlapArr){
+                const newX = overlapArr[key].posX+widgetData.width+5;
+                const checkOverlap = Object.keys(onCheckOverlapping({
+                    thisX:newX,
+                    thisY:overlapArr[key].posY,
+                    thisWidth:overlapArr[key].width,
+                    thisHeight:overlapArr[key].height,
+                    thisNames:[name,key]
+                })).length>0?true:false;
 
-                if(rightCheck){
-                    const moveX = targetX-(targetH-thisX)-5;
-                    
-                    if(moveX>0){
-                        const widgetInfo = {
-                            ...info,
-                            widget:{
-                                ...info.widget,
-                                [key]:{
-                                    ...info.widget[key],
-                                    posX:moveX
-                                }
-                            }
-                        };
-
-                        setCookie("info",JSON.stringify(widgetInfo));
-                        dispatch(setInfo(widgetInfo));
-                    }
+                if(newX<860-overlapArr[key].width&&!checkOverlap){
+                    overlapArr[key].posX=newX;
                 }
             }
         }
+
+        const basicWidget = {
+            ...widget,
+            ...overlapArr
+        };
+
+        setWidget(basicWidget);
     };
     
     const onStop = () =>{
@@ -137,7 +147,7 @@ const WidgetTemplateContainer = ({name,children}) => {
         const basicInfo = {
             ...info,
             widget:{
-                ...info.widget,
+                ...widget,
                 [name]:widgetData
             }
         };
@@ -148,6 +158,7 @@ const WidgetTemplateContainer = ({name,children}) => {
 
     useEffect(()=>{
         if(info){
+            setWidget(info.widget);
             setWidgetData(info.widget[name]);
         }
     },[info,name]);

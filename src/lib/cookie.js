@@ -49,7 +49,7 @@ export const initialCookie = {
             minWidth:295,
             minHeight:222,
             content:'',
-            show:false,
+            show:true,
         },
     }
 };
