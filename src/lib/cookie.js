@@ -30,7 +30,7 @@ export const initialCookie = {
             height:222,
             minWidth:600,
             minHeight:222,
-            show:false,
+            show:true,
         },
         calendar:{
             posX:260,

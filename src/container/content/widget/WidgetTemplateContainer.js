@@ -25,6 +25,8 @@ const WidgetTemplateContainer = ({name,children}) => {
             posY = 455-widgetData.height;
         }
 
+        onMovePosition(posX);
+
         if(onCheckOverlapping({thisX:posX,thisY:posY})){
             posX = widgetData.posX;
             posY = widgetData.posY;
@@ -93,11 +95,46 @@ const WidgetTemplateContainer = ({name,children}) => {
             }
         }
         return false;
-    }
+    };
+
+    const onMovePosition = (thisX) =>{
+        const {widget} = info;
+        const thisH = thisX+widgetData.width;
+
+        for(let key in widget){
+            if(key!==name && widget[key].show){
+                const targetX = widget[key].posX;
+                const targetH = targetX+widget[key].width;
+                
+                //오른쪽 겹칩여부
+                const rightCheck = thisX>=targetX&&thisX<=targetH&&thisH>=targetH;
+
+                if(rightCheck){
+                    const moveX = targetX-(targetH-thisX)-5;
+                    
+                    if(moveX>0){
+                        const widgetInfo = {
+                            ...info,
+                            widget:{
+                                ...info.widget,
+                                [key]:{
+                                    ...info.widget[key],
+                                    posX:moveX
+                                }
+                            }
+                        };
+
+                        setCookie("info",JSON.stringify(widgetInfo));
+                        dispatch(setInfo(widgetInfo));
+                    }
+                }
+            }
+        }
+    };
     
     const onStop = () =>{
 
-        const widgetInfo = {
+        const basicInfo = {
             ...info,
             widget:{
                 ...info.widget,
@@ -105,8 +142,8 @@ const WidgetTemplateContainer = ({name,children}) => {
             }
         };
 
-        setCookie("info",JSON.stringify(widgetInfo));
-        dispatch(setInfo(widgetInfo));
+        setCookie("info",JSON.stringify(basicInfo));
+        dispatch(setInfo(basicInfo));
     };
 
     useEffect(()=>{
