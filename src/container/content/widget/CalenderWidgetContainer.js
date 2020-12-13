@@ -1,9 +1,9 @@
 import React from 'react';
 import CalenderWidget from '../../../component/content/widget/CalenderWidget';
 
-const CalenderWidgetContainer = () => {
+const CalenderWidgetContainer = ({thema}) => {
     return (
-        <CalenderWidget/>
+        <CalenderWidget thema={thema}/>
     );
 };
 

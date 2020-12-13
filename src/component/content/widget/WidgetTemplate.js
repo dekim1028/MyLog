@@ -11,21 +11,42 @@ const WidgetTemplateBlock = styled.div`
             height:${props.height?props.height:"auto"};
         `
     }
-    background-color:rgba(255,255,255,0.4);
+    
     border-radius:4px;
     overflow:hidden;
     position:absolute;
+
+    &.light{
+        background-color:rgba(255,255,255,0.4);
+    }
+
+    &.dark{
+        background-color:rgba(0,0,0,0.4);
+    }
 `;
 
 const Header = styled.div`
     width:100%;
     height: 25px;
-    background-color:rgba(255,255,255,0.3);
     cursor:move;
 
     svg{
         font-size: 25px;
         color: white;
+    }
+
+    &.light{        
+        background-color:rgba(255,255,255,0.3);
+        svg{
+            color: white;
+        }
+    }
+
+    &.dark{
+        background-color:rgba(0,0,0,0.3);
+        svg{
+            color: black;
+        }
     }
 `;
 
@@ -36,23 +57,30 @@ const Footer = styled.div`
 const ResizeBtn = styled(GiResize)`
     transform:rotate(90deg);
     font-size: 15px;
-    color: white;
     cursor:se-resize;
+
+    &.light{        
+        color: white;
+    }
+
+    &.dark{
+        color: black;
+    }
 `;
 
-const WidgetTemplate = ({widgetData,onDrag,onDragPrevent,onResizing,onStop,children}) => {
+const WidgetTemplate = ({widgetData,thema,onDrag,onDragPrevent,onResizing,onStop,children}) => {
     if(!widgetData) return null;
     return (
         <Draggable onDrag={onDrag} onStop={onStop} position={{x:widgetData.posX,y:widgetData.posY}}>
-            <WidgetTemplateBlock width={`${widgetData.width}px`} height={`${widgetData.height}px`}>
-                    <Header>
+            <WidgetTemplateBlock className={thema} width={`${widgetData.width}px`} height={`${widgetData.height}px`}>
+                    <Header className={thema}>
                         <IoIosMenu/>
                     </Header>
                     <div onMouseDown={onDragPrevent}>
                         {children}
                         <Footer>
                             <Draggable onDrag={onResizing} onStop={onStop}>
-                                <ResizeBtn/>
+                                <ResizeBtn className={thema}/>
                             </Draggable>
                         </Footer>
                     </div>

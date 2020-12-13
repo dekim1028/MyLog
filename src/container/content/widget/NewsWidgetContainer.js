@@ -3,7 +3,7 @@ import NewsWidget from '../../../component/content/widget/NewsWidget';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-const NewsWidgetContainer = () => {
+const NewsWidgetContainer = ({thema}) => {
     const [category,setCategory] = useState('all');
     const [newsData,setNewsData] = useState(null);
 
@@ -44,6 +44,7 @@ const NewsWidgetContainer = () => {
         <NewsWidget
             category={category}
             newsData={newsData}
+            thema={thema}
             onClick={onClick}
             goToURL={goToURL}
         />

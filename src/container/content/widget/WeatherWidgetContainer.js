@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import WeatherWidget from '../../../component/content/widget/WeatherWidget';
 import axios from 'axios';
 
-const WeatherWidgetContainer = () => {
+const WeatherWidgetContainer = ({thema}) => {
     const [weatherData,setWeatherData] = useState(null);
 
     const getWeather = () =>{
@@ -25,6 +25,7 @@ const WeatherWidgetContainer = () => {
     return (
         <WeatherWidget
             weatherData={weatherData}
+            thema={thema}
         />
     );
 };

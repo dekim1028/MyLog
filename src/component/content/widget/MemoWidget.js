@@ -13,7 +13,14 @@ const Title = styled.h1`
     margin-bottom: 8px;
     font-size:17px;
     font-style:italic;
-    color:white;
+
+    &.light{
+        color:white;
+    }
+
+    &.dark{
+        color:black;
+    }
 `;
 
 const TextArea = styled.textarea`
@@ -23,21 +30,28 @@ const TextArea = styled.textarea`
     outline: none;
     background: transparent;
     resize:none;
-    color:white;
     font-size: 14px;
 
     ::-webkit-scrollbar {
         width: 0px;
     }
+
+    &.light{
+        color:white;
+    }
+
+    &.dark{
+        color:black;
+    }
 `;
 
-const MemoWidget = ({info,onChange}) => {
+const MemoWidget = ({info,thema,onChange}) => {
     if(!info) return null;
     return (
-        <WidgetTemplateContainer name="memo">
+        <WidgetTemplateContainer name="memo" thema={thema}>
             <Content>
-                <Title>Memo</Title>
-                <TextArea onChange={onChange} value={info.widget.memo.content}>{info.widget.memo.content}</TextArea>
+                <Title className={thema}>Memo</Title>
+                <TextArea className={thema} onChange={onChange} value={info.widget.memo.content}>{info.widget.memo.content}</TextArea>
             </Content>
         </WidgetTemplateContainer>
     );

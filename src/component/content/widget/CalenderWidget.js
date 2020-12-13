@@ -38,9 +38,9 @@ const StyledCalendar = styled(Calendar)`
     }
 `;
 
-const CalenderWidget = () => {
+const CalenderWidget = ({thema}) => {
     return (
-        <WidgetTemplateContainer name="calendar">
+        <WidgetTemplateContainer name="calendar" thema={thema}>
             <Content>
                 <StyledCalendar calendarType="US"/>
             </Content>

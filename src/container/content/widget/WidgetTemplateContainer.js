@@ -4,7 +4,7 @@ import WidgetTemplate from '../../../component/content/widget/WidgetTemplate';
 import { setCookie } from '../../../lib/cookie';
 import { setInfo } from '../../../modules/info';
 
-const WidgetTemplateContainer = ({name,children}) => {
+const WidgetTemplateContainer = ({name,thema,children}) => {
     const dispatch = useDispatch();
     const [widget,setWidget] = useState(null);
     const [widgetData,setWidgetData] = useState(null);
@@ -216,6 +216,7 @@ const WidgetTemplateContainer = ({name,children}) => {
     return (
         <WidgetTemplate
             widgetData={widgetData}
+            thema={thema}
             onDrag={onDrag}
             onDragPrevent={onDragPrevent}
             onResizing={onResizing}

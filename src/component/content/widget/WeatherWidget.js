@@ -15,11 +15,24 @@ const WeatherIcon=styled.i`
     height: 155px;
     font-size: 95px;
     padding: 40px 0 0;
-    color: white;
+    
+    &.light{
+        color: white;
+    }
+
+    &.dark{
+        color: black;
+    }
 `;
 
 const WeatherInfo = styled.div`
-    color: white;
+    &.light{
+        color: white;
+    }
+
+    &.dark{
+        color: black;
+    }
 
     h1{
         margin: 0;
@@ -59,8 +72,15 @@ const WeatherInfo = styled.div`
             height: 60px;
             font-size: 20px;
             border-radius:4px;
-            border:1px solid white;
             padding: 7px;
+
+            &.light{
+                border:1px solid white;
+            }
+
+            &.dark{
+                border:1px solid black;
+            }
 
             &>h1{
                 margin-top: 5px;
@@ -71,13 +91,13 @@ const WeatherInfo = styled.div`
 
 `;
 
-const WeatherWidget = ({weatherData}) => {
+const WeatherWidget = ({weatherData,thema}) => {
     if(!weatherData) return null;
     return (
-        <WidgetTemplateContainer name="weather">
+        <WidgetTemplateContainer name="weather" thema={thema}>
             <Content>
-                <WeatherIcon className={`wi wi-owm-${weatherData.weather[0].id}`}></WeatherIcon>
-                <WeatherInfo>
+                <WeatherIcon className={`wi wi-owm-${weatherData.weather[0].id} ${thema}`}></WeatherIcon>
+                <WeatherInfo className={thema}>
                     <h1 className="name"><i>{weatherData.name}</i></h1>
                     <h1 className="description">{weatherData.weather[0].description}</h1>
                     <h1 className="temp">
@@ -85,15 +105,15 @@ const WeatherWidget = ({weatherData}) => {
                         {Math.round(weatherData.main.temp-273.15)}<sup><i className="wi wi-celsius"/></sup>
                     </h1>
                     <div className="etc">
-                        <div>
+                        <div className={thema}>
                             <i className="wi wi-strong-wind"/>
                             <h1>{Math.round(weatherData.wind.speed)}m/s</h1>
                         </div>
-                        <div>
+                        <div className={thema}>
                             <i className="wi wi-humidity"/>
                             <h1>{weatherData.main.humidity}%</h1>
                         </div>
-                        <div>
+                        <div className={thema}>
                             <i className="wi wi-cloud"/>
                             <h1>{weatherData.clouds.all}%</h1>
                         </div>

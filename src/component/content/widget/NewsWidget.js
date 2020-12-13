@@ -13,7 +13,13 @@ const CategoryWrap = styled.div`
     width: 100px;
     height: 100%;
     text-align: left;
-    border-right: 1px dashed white;
+
+    &.light{
+        border-right: 1px dashed white;
+    }
+    &.dark{
+        border-right: 1px dashed black;
+    }
 `;
 
 const Category = styled.div`
@@ -21,17 +27,33 @@ const Category = styled.div`
     height: -webkit-calc(100%/6);
     height: -moz-calc(100%/6);
     padding: 7px 10px;
-    color: white;
     font-size: 14px;
     cursor:pointer;
 
-    &:hover{
-        background-color:rgba(255,255,255,0.15);
+    &.light{
+        color: white;
+
+        &:hover{
+            background-color:rgba(255,255,255,0.15);
+        }
+
+        &.selected{
+            font-weight:800;
+            background-color:rgba(255,255,255,0.15);
+        }
     }
 
-    &.selected{
-        font-weight:800;
-        background-color:rgba(255,255,255,0.15);
+    &.dark{
+        color: black;
+
+        &:hover{
+            background-color:rgba(0,0,0,0.15);
+        }
+
+        &.selected{
+            font-weight:800;
+            background-color:rgba(0,0,0,0.15);
+        }
     }
 `;
 
@@ -58,7 +80,14 @@ const NewsItem = styled.li`
     padding: 0 10px;
     margin:15px 0;
     list-style:none;
-    color:white;
+
+    &.light{
+        color: white;
+    }
+
+    &.dark{
+        color: black;
+    }
 `;
 
 const Thumbnail = styled.img`
@@ -96,44 +125,44 @@ const NewsText = styled.dl`
     }
 `;
 
-const NewsWidget = ({category,newsData,onClick,goToURL}) => {
+const NewsWidget = ({category,newsData,thema,onClick,goToURL}) => {
     if(!newsData) return null;
     return (
-        <WidgetTemplateContainer name="news">
+        <WidgetTemplateContainer name="news" thema={thema}>
             <Content>
-                <CategoryWrap>
+                <CategoryWrap className={thema}>
                     <Category
-                        className={cn(category==='all'?'selected':'')}
+                        className={cn(category==='all'?'selected':'',thema)}
                         onClick={()=>onClick('all')}
                     >
                         전체
                     </Category>
                     <Category
-                        className={cn(category==='business'?'selected':'')}
+                        className={cn(category==='business'?'selected':'',thema)}
                         onClick={()=>onClick('business')}
                     >
                         비즈니스
                     </Category>
                     <Category
-                        className={cn(category==='entertainment'?'selected':'')}
+                        className={cn(category==='entertainment'?'selected':'',thema)}
                         onClick={()=>onClick('entertainment')}
                     >
                         엔터테인먼트
                     </Category>
                     <Category
-                        className={cn(category==='sports'?'selected':'')}
+                        className={cn(category==='sports'?'selected':'',thema)}
                         onClick={()=>onClick('sports')}
                     >
                         스포츠
                     </Category>
                     <Category
-                        className={cn(category==='science'?'selected':'')}
+                        className={cn(category==='science'?'selected':'',thema)}
                         onClick={()=>onClick('science')}
                     >
                         과학
                     </Category>
                     <Category
-                        className={cn(category==='technology'?'selected':'')}
+                        className={cn(category==='technology'?'selected':'',thema)}
                         onClick={()=>onClick('technology')}
                     >
                         기술
@@ -143,7 +172,7 @@ const NewsWidget = ({category,newsData,onClick,goToURL}) => {
                     <NewsList>
                         {
                             newsData.map(news=>(
-                                <NewsItem key={news.url}>
+                                <NewsItem key={news.url} className={thema}>
                                     <Thumbnail src={news.urlToImage?news.urlToImage:'/not_found_img.png'} onClick={()=>goToURL(news.url)} alt="썸네일"/>
                                     <NewsText>
                                         <dt className="title" onClick={()=>goToURL(news.url)}>{news.title}</dt>

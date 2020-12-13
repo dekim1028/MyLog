@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
 import { setInfo } from '../../../modules/info';
 
-const MemoWidgetContainer = () => {
+const MemoWidgetContainer = ({thema}) => {
     const dispatch = useDispatch();
     const {info} = useSelector(({info})=>({
         info:info.info,
@@ -17,7 +17,10 @@ const MemoWidgetContainer = () => {
             ...info,
             widget:{
                 ...info.widget,
-                memo:value
+                memo:{
+                    ...info.widget.memo,
+                    content:value
+                }
             }
         };
         
@@ -28,6 +31,7 @@ const MemoWidgetContainer = () => {
     return (
         <MemoWidget
             info={info}
+            thema={thema}
             onChange={onChange}
         />
     );

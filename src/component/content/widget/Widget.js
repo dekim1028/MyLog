@@ -19,10 +19,10 @@ const Widget = ({margin,info}) => {
     if(!info) return null;
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
-            {info.widget.weather.show && <WeatherWidgetContainer/>}
-            {info.widget.news.show && <NewsWidgetContainer/>}
-            {info.widget.calendar.show && <CalenderWidgetContainer/>}
-            {info.widget.memo.show &&<MemoWidgetContainer/>}
+            {info.widget.weather.show && <WeatherWidgetContainer thema={info.widgetThema}/>}
+            {info.widget.news.show && <NewsWidgetContainer thema={info.widgetThema}/>}
+            {info.widget.calendar.show && <CalenderWidgetContainer thema={info.widgetThema}/>}
+            {info.widget.memo.show &&<MemoWidgetContainer thema={info.widgetThema}/>}
         </WidgetBlock>
     );
 };

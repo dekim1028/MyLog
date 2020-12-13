@@ -51,7 +51,8 @@ export const initialCookie = {
             content:'',
             show:true,
         },
-    }
+    },
+    widgetThema:"light",
 };
 
 // 쿠키 조회
