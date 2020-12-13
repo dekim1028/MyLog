@@ -26,11 +26,25 @@ const WidgetTemplateContainer = ({name,children}) => {
             posY = 455-widgetData.height;
         }
 
-        onMovePosition(pos.deltaX>0?'right':'left',posX,posY);
+        let dir = null;
+
+        if(pos.deltaX>0){
+            dir = 'right';
+        }else if(pos.deltaX<0){
+            dir = 'left';
+        }
+
+        if(pos.deltaY>0){
+            dir = 'down';
+        }else if(pos.deltaY<0){
+            dir = 'up';
+        }
+
+        onMovePosition(dir,posX,posY);
 
         if(Object.keys(onCheckOverlapping({thisX:posX,thisY:posY})).length>0){
-            posX = widgetData.posX;
-            posY = widgetData.posY;
+            posX = info.widget[name].posX;
+            posY = info.widget[name].posY;
         }
 
         setWidgetData({...widgetData,posX,posY});
@@ -101,7 +115,7 @@ const WidgetTemplateContainer = ({name,children}) => {
 
     const onMovePosition = (dir,thisX,thisY) =>{
         let overlapArr = onCheckOverlapping({thisX,thisY,thisWidth:widgetData.width,thisHeight:widgetData.height});
-        
+
         if(dir==='right'){
             for(let key in overlapArr){
                 const newX = overlapArr[key].posX-widgetData.width-6;
@@ -132,6 +146,36 @@ const WidgetTemplateContainer = ({name,children}) => {
                     overlapArr[key].posX=newX;
                 }
             }
+        }else if(dir==='up'){
+            for(let key in overlapArr){
+                const newY = overlapArr[key].posY-widgetData.height-5;
+                const checkOverlap = Object.keys(onCheckOverlapping({
+                    thisX:overlapArr[key].posX,
+                    thisY:newY,
+                    thisWidth:overlapArr[key].width,
+                    thisHeight:overlapArr[key].height,
+                    thisNames:[name,key]
+                })).length>0?true:false;
+
+                if(newY>=0&&!checkOverlap){
+                    overlapArr[key].posY=newY;
+                }
+            }
+        }else if(dir==='down'){
+            for(let key in overlapArr){
+                const newY = overlapArr[key].posY+widgetData.height+5;
+                const checkOverlap = Object.keys(onCheckOverlapping({
+                    thisX:overlapArr[key].posX,
+                    thisY:newY,
+                    thisWidth:overlapArr[key].width,
+                    thisHeight:overlapArr[key].height,
+                    thisNames:[name,key]
+                })).length>0?true:false;
+
+                if(newY<455-overlapArr[key].height&&!checkOverlap){
+                    overlapArr[key].posY=newY;
+                }
+            }
         }
 
         const basicWidget = {
@@ -143,17 +187,24 @@ const WidgetTemplateContainer = ({name,children}) => {
     };
     
     const onStop = () =>{
+        const changePos = info.widget[name].posX!==widgetData.posX || info.widget[name].posY!==widgetData.posY;
+        const changeSize = info.widget[name].width!==widgetData.width || info.widget[name].height!==widgetData.height;
 
-        const basicInfo = {
-            ...info,
-            widget:{
-                ...widget,
-                [name]:widgetData
-            }
-        };
-
-        setCookie("info",JSON.stringify(basicInfo));
-        dispatch(setInfo(basicInfo));
+        if(changePos||changeSize){
+            const basicInfo = {
+                ...info,
+                widget:{
+                    ...widget,
+                    [name]:widgetData
+                }
+            };
+    
+            setCookie("info",JSON.stringify(basicInfo));
+            dispatch(setInfo(basicInfo));
+        }else{
+            setWidget(info.widget);
+            setWidgetData(info.widget[name]);
+        }
     };
 
     useEffect(()=>{
