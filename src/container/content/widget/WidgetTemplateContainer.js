@@ -115,10 +115,9 @@ const WidgetTemplateContainer = ({name,children}) => {
 
     const onMovePosition = (dir,thisX,thisY) =>{
         let overlapArr = onCheckOverlapping({thisX,thisY,thisWidth:widgetData.width,thisHeight:widgetData.height});
-
         if(dir==='right'){
             for(let key in overlapArr){
-                const newX = overlapArr[key].posX-widgetData.width-6;
+                const newX = overlapArr[key].posX-widgetData.width-10;
                 const checkOverlap = Object.keys(onCheckOverlapping({
                     thisX:newX,
                     thisY:overlapArr[key].posY,
@@ -133,7 +132,7 @@ const WidgetTemplateContainer = ({name,children}) => {
             }
         }else if(dir==='left'){
             for(let key in overlapArr){
-                const newX = overlapArr[key].posX+widgetData.width+5;
+                const newX = overlapArr[key].posX+widgetData.width+10;
                 const checkOverlap = Object.keys(onCheckOverlapping({
                     thisX:newX,
                     thisY:overlapArr[key].posY,
@@ -142,13 +141,13 @@ const WidgetTemplateContainer = ({name,children}) => {
                     thisNames:[name,key]
                 })).length>0?true:false;
 
-                if(newX<860-overlapArr[key].width&&!checkOverlap){
+                if(newX<=860-overlapArr[key].width&&!checkOverlap){
                     overlapArr[key].posX=newX;
                 }
             }
-        }else if(dir==='up'){
+        }else if(dir==='down'){
             for(let key in overlapArr){
-                const newY = overlapArr[key].posY-widgetData.height-5;
+                const newY = overlapArr[key].posY-widgetData.height-11;
                 const checkOverlap = Object.keys(onCheckOverlapping({
                     thisX:overlapArr[key].posX,
                     thisY:newY,
@@ -161,9 +160,9 @@ const WidgetTemplateContainer = ({name,children}) => {
                     overlapArr[key].posY=newY;
                 }
             }
-        }else if(dir==='down'){
+        }else if(dir==='up'){
             for(let key in overlapArr){
-                const newY = overlapArr[key].posY+widgetData.height+5;
+                const newY = overlapArr[key].posY+widgetData.height+11;
                 const checkOverlap = Object.keys(onCheckOverlapping({
                     thisX:overlapArr[key].posX,
                     thisY:newY,
@@ -172,7 +171,7 @@ const WidgetTemplateContainer = ({name,children}) => {
                     thisNames:[name,key]
                 })).length>0?true:false;
 
-                if(newY<455-overlapArr[key].height&&!checkOverlap){
+                if(newY<=455-overlapArr[key].height&&!checkOverlap){
                     overlapArr[key].posY=newY;
                 }
             }
