@@ -81,7 +81,7 @@ const SettingPopup = ({view,onClickMenu,onShowSettingPopup}) => {
                     <SettingHeader>
                         <CloseBtn onClick={onShowSettingPopup}><IoIosClose/></CloseBtn>
                     </SettingHeader>
-                    <SettingBody>
+                    <SettingBody onMouseDown={e=>e.stopPropagation()}>
                         <SettingLeftMenu view={view} onClickMenu={onClickMenu}/>
                         <SettingContent>
                             <SettingFormContainer view={view}/>
