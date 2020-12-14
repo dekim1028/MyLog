@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import WidgetTool from '../../../component/setting/form/WidgetTool';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCookie } from '../../../lib/cookie';
+import { setCookie, initialCookie } from '../../../lib/cookie';
 import { setInfo } from '../../../modules/info';
 
 const WidgetToolContainer = () => {
@@ -30,9 +30,18 @@ const WidgetToolContainer = () => {
     };
 
     const onClick = () =>{
+        let widgetTemp = {...widget};
+        
+        for(let key in widgetTemp){
+            widgetTemp[key] = {
+                ...initialCookie.widget[key],
+                show:widgetTemp[key].show
+            };
+        }
+
         const basicInfo = {
             ...info,
-            widget,
+            widget:widgetTemp,
             widgetThema,
         };
 
