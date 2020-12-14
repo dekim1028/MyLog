@@ -7,7 +7,7 @@ const ResetContainer = () => {
         const check = window.confirm("초기화하시겠습니까? 초기화 후 이전 데이터는 복구할 수 없습니다.");
         if(check){
             deleteCookie();
-            window.location.replace("/");
+            window.location.reload();
         }
     };
 
