@@ -20,7 +20,9 @@ const NewsWidgetContainer = ({thema}) => {
             type: "GET",
             async: "false",
         }).then(function(response){
-            setNewsData(response.data.articles);
+            if(response){
+                setNewsData(response.data.articles);
+            }
         });
     },[category]);
 
