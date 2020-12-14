@@ -32,7 +32,7 @@ const NoData = styled.li`
     padding-top:190px;
 `;
 
-const MenuListItem = styled.li`
+const MenuListItemBlock = styled.li`
     width: 80px;
     display:inline-block;
     list-style-type:none;
@@ -77,6 +77,15 @@ const SettingBtn = styled(AiTwotoneSetting)`
     }
 `;
 
+const MenuListItem = ({menu,onClickLink})=>{
+    return (
+        <MenuListItemBlock  onClick={()=>onClickLink(menu.url)}>
+            <MenuIcon src={menu.image}/>
+            <MenuTitle>{menu.name}</MenuTitle>
+        </MenuListItemBlock>
+    )
+};
+
 const Menu = ({info,menuList,settingPopupVisible,onShowSettingPopup,onClickLink}) => {
     if(!info||!menuList) return null;
     return (
@@ -86,10 +95,7 @@ const Menu = ({info,menuList,settingPopupVisible,onShowSettingPopup,onClickLink}
                 <MenuList>
                     {
                         menuList.length>0?menuList.map(menu=>(
-                            <MenuListItem key={menu.id} onClick={()=>onClickLink(menu.url)}>
-                                <MenuIcon src={menu.image}/>
-                                <MenuTitle>{menu.name}</MenuTitle>
-                            </MenuListItem>
+                            <MenuListItem key={menu.id} menu={menu} onClickLink={onClickLink}/>
                         )):<NoData>추가된 항목이 없습니다</NoData>
                     }
                 </MenuList>
