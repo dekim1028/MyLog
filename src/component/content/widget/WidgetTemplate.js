@@ -55,6 +55,9 @@ const Footer = styled.div`
 `;
 
 const ResizeBtn = styled(GiResize)`
+    position: fixed;
+    bottom: 0;
+    right: 0;
     transform:rotate(90deg);
     font-size: 15px;
     cursor:se-resize;
