@@ -1,4 +1,4 @@
-const iconURL ='/MyLog/icon';
+const iconURL ='/icon';
 
 const shortcutsInfo = {
     portal:[

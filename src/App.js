@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage";
 function App() {
   return (
     <>
-      <Route component={MainPage} path='/MyLog' exact/>
+      <Route component={MainPage} path='/' exact/>
     </>
   );
 }
