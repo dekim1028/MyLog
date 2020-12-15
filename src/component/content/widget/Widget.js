@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import WeatherWidgetContainer from '../../../container/content/widget/WeatherWidgetContainer';
-import NewsWidgetContainer from '../../../container/content/widget/NewsWidgetContainer';
 import MemoWidgetContainer from '../../../container/content/widget/MemoWidgetContainer';
 import CalenderWidgetContainer from '../../../container/content/widget/CalenderWidgetContainer';
 
@@ -20,7 +19,6 @@ const Widget = ({margin,info}) => {
     return (
         <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
             {info.widget.weather.show && <WeatherWidgetContainer thema={info.widgetThema}/>}
-            {info.widget.news.show && <NewsWidgetContainer thema={info.widgetThema}/>}
             {info.widget.calendar.show && <CalenderWidgetContainer thema={info.widgetThema}/>}
             {info.widget.memo.show &&<MemoWidgetContainer thema={info.widgetThema}/>}
         </WidgetBlock>

@@ -55,7 +55,6 @@ const WidgetTool = ({widget,widgetThema,onChangeThema,onChangeWidget,onClick}) =
                 <Title>사용할 위젯:</Title>
                 <WidgetList>
                     <WidgetListItem><input type="checkbox" name="weather" checked={widget.weather.show?'checked':''} onChange={onChangeWidget}/>날씨</WidgetListItem>
-                    <WidgetListItem><input type="checkbox" name="news" checked={widget.news.show?'checked':''} onChange={onChangeWidget}/>뉴스</WidgetListItem>
                     <WidgetListItem><input type="checkbox" name="calendar" checked={widget.calendar.show?'checked':''} onChange={onChangeWidget}/>달력</WidgetListItem>
                     <WidgetListItem><input type="checkbox" name="memo" checked={widget.memo.show?'checked':''} onChange={onChangeWidget}/>메모</WidgetListItem>
                 </WidgetList>

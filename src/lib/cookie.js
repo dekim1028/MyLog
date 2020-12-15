@@ -23,18 +23,9 @@ export const initialCookie = {
             minHeight:222,
             show:true,
         },
-        news:{
-            posX:260,
-            posY:0,
-            width:600,
-            height:222,
-            minWidth:600,
-            minHeight:222,
-            show:true,
-        },
         calendar:{
             posX:260,
-            posY:235,
+            posY:0,
             width:295,
             height:222,
             minWidth:295,
@@ -43,7 +34,7 @@ export const initialCookie = {
         },
         memo:{
             posX:565,
-            posY:235,
+            posY:0,
             width:295,
             height:222,
             minWidth:295,
