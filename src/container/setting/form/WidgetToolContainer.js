@@ -33,10 +33,18 @@ const WidgetToolContainer = () => {
         let widgetTemp = {...widget};
         
         for(let key in widgetTemp){
-            widgetTemp[key] = {
-                ...initialCookie.widget[key],
-                show:widgetTemp[key].show
-            };
+            if(key!=='memo'){
+                widgetTemp[key] = {
+                    ...initialCookie.widget[key],
+                    show:widgetTemp[key].show
+                };
+            }else{
+                widgetTemp[key] = {
+                    ...initialCookie.widget[key],
+                    content:widgetTemp[key].content,
+                    show:widgetTemp[key].show
+                };
+            }
         }
 
         const basicInfo = {

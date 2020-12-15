@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import WidgetTemplateContainer from '../../../container/content/widget/WidgetTemplateContainer';
 
 const Content = styled.div`
-    height: 182px;
     padding:10px;
     text-align:left;
 `;
@@ -25,7 +24,7 @@ const Title = styled.h1`
 
 const TextArea = styled.textarea`
     width:100%;
-    height:140px;
+    height:85%;
     border: none;
     outline: none;
     background: transparent;
@@ -49,7 +48,7 @@ const MemoWidget = ({info,thema,onChange}) => {
     if(!info) return null;
     return (
         <WidgetTemplateContainer name="memo" thema={thema}>
-            <Content>
+            <Content style={{height:`${info.widget.memo.height-25}px`}}>
                 <Title className={thema}>Memo</Title>
                 <TextArea className={thema} onChange={onChange} value={info.widget.memo.content}>{info.widget.memo.content}</TextArea>
             </Content>
