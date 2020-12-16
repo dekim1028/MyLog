@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import cn from 'classnames';
 import {IoIosClose} from 'react-icons/io';
 import Draggable from 'react-draggable';
 import SettingLeftMenu from './SettingLeftMenu';
@@ -21,6 +22,34 @@ const SettingPopupBlock = styled.div`
     height:400px;
     box-shadow: 0 2px 10px #585858;
     border-radius: 10px;
+
+    @keyframes clickedAnimation {
+        0% {
+            box-shadow: 0 2px 10px #585858;
+        }
+
+        50% {
+            box-shadow: 0 2px 14px #2A1019;
+        }
+        
+        100% {
+            box-shadow: 0 2px 10px #585858;
+        }
+    }
+
+    animation-name: clickedAnimation;
+    animation-duration: 0.7s;
+    animation-timing-function:ease-out;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+
+    &.clicked{
+        animation-play-state: running;
+    }
 `;
 
 const SettingHeader = styled.div`
@@ -73,11 +102,11 @@ const SettingContent = styled.div`
     padding: 20px;
 `;
 
-const SettingPopup = ({view,onClickMenu,onShowSettingPopup}) => {
+const SettingPopup = ({view,clicked,onClickMenu,onClickOuter,onShowSettingPopup}) => {
     return (
-        <Wrap>
+        <Wrap className={cn({clicked})} onClick={onClickOuter}>
             <Draggable disabled={false} bounds="parent">
-                <SettingPopupBlock>
+                <SettingPopupBlock className={cn({clicked})}>
                     <SettingHeader>
                         <CloseBtn onClick={onShowSettingPopup}><IoIosClose/></CloseBtn>
                     </SettingHeader>

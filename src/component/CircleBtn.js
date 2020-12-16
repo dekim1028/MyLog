@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import SettingBtn from './common/SettingBtn';
 
 const CircleBtnBlock = styled.div`
     width:80px;
     height:80px;
-    margin: 0 auto;
+    position: fixed;
+    bottom: 15px;
+    left: 46%;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -3,29 +3,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import WidgetTemplate from '../../../component/content/widget/WidgetTemplate';
 import { setCookie } from '../../../lib/cookie';
 import { setInfo } from '../../../modules/info';
+import toPX from 'to-px';
 
 const WidgetTemplateContainer = ({name,thema,children}) => {
     const dispatch = useDispatch();
-    const [widget,setWidget] = useState(null);
-    const [widgetData,setWidgetData] = useState(null);
+    const [widget,setWidget] = useState(null); /* 위젯 전체 */
+    const [widgetData,setWidgetData] = useState(null); /* name에 해당하는 위젯 */
+    const content_width = toPX('80vw')-40; /* content 가로길이 */
+    const content_height = toPX('63vh')-40; /* content 세로길이 */
 
     const {info} = useSelector(({info})=>({
         info:info.info,
     }));
 
     const onDrag = (data,pos) =>{
-        //범위 벗어나는 경우 원래 위치로
+        // 1. 범위 벗어나는 경우 원래 위치로 초기화
         let posX = pos.x<0?0:pos.x; //왼쪽
         let posY = pos.y<0?0:pos.y; //위
 
-        if(posX>860-widgetData.width){ //오른쪽
-            posX = 860-widgetData.width;
+        if(posX>content_width-widgetData.width){ //오른쪽
+            posX = content_width-widgetData.width;
         }
 
-        if(posY>455-widgetData.height){ //아래
-            posY = 455-widgetData.height;
+        if(posY>content_height-widgetData.height){ //아래
+            posY = content_height-widgetData.height;
         }
 
+        // 2. 이동방향
         let dir = null;
 
         if(pos.deltaX>0){
@@ -40,9 +44,12 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
             dir = 'up';
         }
 
+        // 3. (가상으로) 위치이동
         onMovePosition(dir,posX,posY);
 
+        // 4. 위치 중복 여부 확인
         if(Object.keys(onCheckOverlapping({thisX:posX,thisY:posY})).length>0){
+            // 해당 위치가 다른 위젯과 중복될 경우 원래 좌표로 초기화 
             posX = info.widget[name].posX;
             posY = info.widget[name].posY;
         }
@@ -58,19 +65,20 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
         let width = widgetData.width+pos.deltaX;
         let height = widgetData.height+pos.deltaY;
 
-        //resizing 가능 범위 제한
-        if(widgetData.posX+width>860){
-            width=860-widgetData.posX;
+        // 1. resizing 가능 범위 제한
+        if(widgetData.posX+width>content_width){
+            width=content_width-widgetData.posX;
         }else if(width<widgetData.minWidth){
             width=widgetData.minWidth;
         }
 
-        if(widgetData.posY+height>455){
-            height=455-widgetData.posY;
+        if(widgetData.posY+height>content_height){
+            height=content_height-widgetData.posY;
         }else if(height<=widgetData.minHeight){
             height=widgetData.minHeight;
         }
 
+        // 2. 위치 중복 여부 확인
         if(Object.keys(onCheckOverlapping({thisWidth:width,thisHeight:height})).length>0){
             width = widgetData.width;
             height = widgetData.height;
@@ -81,11 +89,11 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
 
     const onCheckOverlapping = (
         {
-            thisX=widgetData.posX,
-            thisY=widgetData.posY,
-            thisWidth=widgetData.width,
-            thisHeight=widgetData.height,
-            thisNames=[name],
+            thisX=widgetData.posX, /* 변경된 x 좌표 */
+            thisY=widgetData.posY, /* 변경된 y 좌표 */
+            thisWidth=widgetData.width, /* 변경된 위젯 가로길이 */
+            thisHeight=widgetData.height, /* 변경된 위젯 세로길이 */
+            exceptKeys=[name],  /* 비교 제외 항목 */
         }
     ) =>{
         let overlapArr = {};
@@ -93,7 +101,7 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
         const thisV = thisY+thisHeight;
 
         for(let key in widget){
-            if(!thisNames.includes(key) && widget[key].show){
+            if(!exceptKeys.includes(key) && widget[key].show){
                 const targetX = widget[key].posX;
                 const targetY = widget[key].posY;
                 const targetH = targetX+widget[key].width;
@@ -114,7 +122,10 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
     };
 
     const onMovePosition = (dir,thisX,thisY) =>{
+        // 1. 가상으로 이동한 좌표와 겹치는 위젯 리스트 조회
         let overlapArr = onCheckOverlapping({thisX,thisY,thisWidth:widgetData.width,thisHeight:widgetData.height});
+
+        // 2. 겹치는 위젯들 좌표 변경
         if(dir==='right'){
             for(let key in overlapArr){
                 const newX = overlapArr[key].posX-widgetData.width-10;
@@ -123,7 +134,7 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
                     thisY:overlapArr[key].posY,
                     thisWidth:overlapArr[key].width,
                     thisHeight:overlapArr[key].height,
-                    thisNames:[name,key]
+                    exceptKeys:[name,key]
                 })).length>0?true:false;
                 
                 if(newX>=0&&!checkOverlap){
@@ -138,10 +149,10 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
                     thisY:overlapArr[key].posY,
                     thisWidth:overlapArr[key].width,
                     thisHeight:overlapArr[key].height,
-                    thisNames:[name,key]
+                    exceptKeys:[name,key]
                 })).length>0?true:false;
 
-                if(newX<=860-overlapArr[key].width&&!checkOverlap){
+                if(newX<=content_width-overlapArr[key].width&&!checkOverlap){
                     overlapArr[key].posX=newX;
                 }
             }
@@ -153,7 +164,7 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
                     thisY:newY,
                     thisWidth:overlapArr[key].width,
                     thisHeight:overlapArr[key].height,
-                    thisNames:[name,key]
+                    exceptKeys:[name,key]
                 })).length>0?true:false;
 
                 if(newY>=0&&!checkOverlap){
@@ -168,10 +179,10 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
                     thisY:newY,
                     thisWidth:overlapArr[key].width,
                     thisHeight:overlapArr[key].height,
-                    thisNames:[name,key]
+                    exceptKeys:[name,key]
                 })).length>0?true:false;
 
-                if(newY<=455-overlapArr[key].height&&!checkOverlap){
+                if(newY<=content_height-overlapArr[key].height&&!checkOverlap){
                     overlapArr[key].posY=newY;
                 }
             }
@@ -186,10 +197,12 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
     };
     
     const onStop = () =>{
+        // 1. 위치 또는 사이즈 변경 여부 확인
         const changePos = info.widget[name].posX!==widgetData.posX || info.widget[name].posY!==widgetData.posY;
         const changeSize = info.widget[name].width!==widgetData.width || info.widget[name].height!==widgetData.height;
 
         if(changePos||changeSize){
+            // 2-1. 변경되었을 경우 데이터 업데이트 
             const basicInfo = {
                 ...info,
                 widget:{
@@ -201,17 +214,49 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
             setCookie("info",JSON.stringify(basicInfo));
             dispatch(setInfo(basicInfo));
         }else{
+            //2-2. 변경되지 않은 경우 데이터 원복
             setWidget(info.widget);
             setWidgetData(info.widget[name]);
         }
     };
 
     useEffect(()=>{
+        //위젯 기본정보 세팅
         if(info){
             setWidget(info.widget);
             setWidgetData(info.widget[name]);
         }
     },[info,name]);
+
+    useEffect(()=>{
+        if(widgetData){
+            const count = Object.keys(widget).filter(key=>widget[key].show).length; /* 사용중인 위젯 개수 */
+            const index = Object.keys(widget).indexOf(name); /* 위젯의 index */
+            
+            // 첫 접속시 해상도에 따라 크기조절
+            if((widgetData.width===0&&widgetData.height===0&&widgetData.posX===0)){
+                const width = content_width/count-10;
+                const height = content_height;
+                const posX = (width*index)+(10*index);
+    
+                const basicInfo = {
+                    ...info,
+                    widget:{
+                        ...widget,
+                        [name]:{
+                            ...widgetData,
+                            width,
+                            height,
+                            posX
+                        }
+                    }
+                };
+        
+                setCookie("info",JSON.stringify(basicInfo));
+                dispatch(setInfo(basicInfo));
+            }
+        }
+    },[dispatch,info,name,widgetData,widget,content_width,content_height]);
 
     return (
         <WidgetTemplate

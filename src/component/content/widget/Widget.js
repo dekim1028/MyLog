@@ -5,8 +5,8 @@ import MemoWidgetContainer from '../../../container/content/widget/MemoWidgetCon
 import CalenderWidgetContainer from '../../../container/content/widget/CalenderWidgetContainer';
 
 const WidgetBlock = styled.div`
-    width: 900px;
-    height: 500px;
+    width: 50%;
+    height: 63vh;
     position:relative;
     display:flex;
     transition:1s;
@@ -17,7 +17,7 @@ const WidgetBlock = styled.div`
 const Widget = ({margin,info}) => {
     if(!info) return null;
     return (
-        <WidgetBlock style={{marginLeft:margin?'-900px':'0'}}>
+        <WidgetBlock style={{marginLeft:margin?'-50%':'0'}}>
             {info.widget.weather.show && <WeatherWidgetContainer thema={info.widgetThema}/>}
             {info.widget.calendar.show && <CalenderWidgetContainer thema={info.widgetThema}/>}
             {info.widget.memo.show &&<MemoWidgetContainer thema={info.widgetThema}/>}

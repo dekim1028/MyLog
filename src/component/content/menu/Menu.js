@@ -4,8 +4,8 @@ import {AiTwotoneSetting} from 'react-icons/ai';
 import SettingPopupContainer from '../../../container/setting/SettingPopupContainer';
 
 const MenuBlock = styled.div`
-    width: 900px;
-    height: 500px;
+    width: 50%;
+    height: 63vh;
     transition:1s;
     background-color: rgba(255,255,255,0.3);
 `;
@@ -66,8 +66,8 @@ const MenuTitle = styled.h1`
 
 const SettingBtn = styled(AiTwotoneSetting)`
     position: relative;
-    top: 10px;
-    left: 425px;
+    float: right;
+    margin: 10px;
     color:rgba(255,255,255,0.6);
     font-size:25px;
     transition: all ease 1s;

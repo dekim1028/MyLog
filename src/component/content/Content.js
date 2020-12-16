@@ -9,15 +9,15 @@ const ContentBlock = styled.div`
 `;
 
 const ContentWrap = styled.div`
-    width: 900px;
-    height: 500px;
-    margin:30px auto;
+    width: 80vw;
+    height: 63vh;
+    margin: 35px auto;
     overflow:hidden;
     border-radius: 25px;
 `;
 
 const Wrap = styled.div`
-    width: 1900px;
+    width: 200%;
     display:flex;
 `;
 
