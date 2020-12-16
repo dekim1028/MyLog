@@ -230,8 +230,9 @@ const WidgetTemplateContainer = ({name,thema,children}) => {
 
     useEffect(()=>{
         if(widgetData){
-            const count = Object.keys(widget).filter(key=>widget[key].show).length; /* 사용중인 위젯 개수 */
-            const index = Object.keys(widget).indexOf(name); /* 위젯의 index */
+            const showList = Object.keys(widget).filter(key=>widget[key].show);
+            const count = showList.length; /* 사용중인 위젯 개수 */
+            const index = showList.indexOf(name); /* 위젯의 index */
             
             // 첫 접속시 해상도에 따라 크기조절
             if((widgetData.width===0&&widgetData.height===0&&widgetData.posX===0)){
