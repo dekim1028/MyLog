@@ -47,11 +47,22 @@ const WidgetToolContainer = () => {
             }
         }
 
-        const basicInfo = {
-            ...info,
-            widget:widgetTemp,
-            widgetThema,
-        };
+        // 위젯 사용유무가 변경되지 않았으면 테마만 업데이트
+        const changeCheck = Object.keys(widgetTemp).filter(key=>widgetTemp[key].show!==info.widget[key].show).length>0?true:false;
+
+        let basicInfo = {};
+        if(changeCheck){
+            basicInfo = {
+                ...info,
+                widget:widgetTemp,
+                widgetThema,
+            };
+        }else{
+            basicInfo = {
+                ...info,
+                widgetThema,
+            };
+        }
 
         setCookie("info",JSON.stringify(basicInfo));
         dispatch(setInfo(basicInfo));
