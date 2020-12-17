@@ -16,5 +16,5 @@ Your own browser to custom your mind
 
 ### **Screenshots**
 ---
-![screenshot_main](./screenshot/main.png)
 ![screenshot_custom](./screenshot/custom.png)
+![screenshot_main](./screenshot/main.png)
