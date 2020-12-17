@@ -9,10 +9,12 @@ Your own browser to custom your mind
 
 ### **Main Function**
 ---
-+ Background color custom
-+ Search tool setting
-+ Widget usage and theme selection
-+ Custom shortcuts
++ Widget drag movement and resizing function
++ Various setting functions
+    + Background color custom
+    + Select search tool
+    + Widget usage and theme selection
+    + Custom shortcuts (MyLog)
 
 ### **Screenshots**
 ---
