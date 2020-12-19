@@ -6,41 +6,17 @@ import ShortcutsContainer from '../../../container/setting/form/ShortcutsContain
 import MyLogContainer from '../../../container/setting/form/MyLogContainer';
 import WidgetToolContainer from '../../../container/setting/form/WidgetToolContainer';
 
-const SettingForm = ({view}) => {
-    return (
-        <>
-            {
-                view==='viewColor' &&(
-                    <ViewColorContainer/>
-                )
-            }
-            {
-                view==='searchTool' &&(
-                    <SearchToolContainer/>
-                )
-            }
-            {
-                view==='widgetTool' &&(
-                    <WidgetToolContainer/>
-                )
-            }
-            {
-                view==='shortcuts' &&(
-                    <ShortcutsContainer/>
-                )
-            }
-            {
-                view==='mylog' &&(
-                    <MyLogContainer/>
-                )
-            }
-            {
-                view==='reset' &&(
-                    <ResetContainer/>
-                )
-            }
-        </>
-    );
+const SettingForm = ({ view }) => {
+	return (
+		<>
+			{view === 'viewColor' && <ViewColorContainer />}
+			{view === 'searchTool' && <SearchToolContainer />}
+			{view === 'widgetTool' && <WidgetToolContainer />}
+			{view === 'shortcuts' && <ShortcutsContainer />}
+			{view === 'mylog' && <MyLogContainer />}
+			{view === 'reset' && <ResetContainer />}
+		</>
+	);
 };
 
 export default SettingForm;
